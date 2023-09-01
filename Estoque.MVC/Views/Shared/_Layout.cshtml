@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Estoque.MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/icons/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Estoque.MVC.styles.css" asp-append-version="true" />
+</head>
+<body class="bg-dark">
+    <header class="z-index-3">
+        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid d-flex justify-content-end">
+                <div class="d-flex justify-content-end ">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <button onClick={props.onClick} class="sb-toggle open-sb-toggle">
+        <span class="icon-sb-toggle">
+            <i class="fa fa-align-justify"></i>
+            <span></span>
+        </span>
+    </button>
+    <aside class="sb-container open-sb-container">
+        <a class="sb-logo" to={'/'}>
+        <span class="icon-logo">
+            @*<Image src={srcLogo} alt="logomarca" class={sidebarLogo}></Image>*@
+            <span></span>
+        </span>
+        </a>
+        <nav class="sb-nav open-sb-nav">
+            <a class="sb-coluna" href="/">
+            <span class="icon-sb-coluna open-icon-sombra">
+                    <i class="bi bi-unity"></i>
+                    <span class="sb-item-coluna open-desc-menu">Início</span>
+            </span>
+            </a>
+            <a class="sb-coluna" href="/agendamento">
+            <span class="icon-sb-coluna open-icon-sombra">
+                <i class="bi bi-calendar-event"></i>
+                <span class="sb-item-coluna open-desc-menu">Agendamento</span>
+            </span>
+            </a>
+            <a class="sb-coluna" href="/historico">
+            <span class="icon-sb-coluna open-icon-sombra">
+                <i class="bi bi-app"></i>
+                <span class="sb-item-coluna open-desc-menu">Historico</span>
+            </span>
+            </a>
+        </nav>
+        <div class="dropdown dropup">
+            <button class="sb-header " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="sb-img-user"></Image>
+                <span class={descUsuario}>
+                    <span class='d-block mb-1 fw-semibold'>{user.nome} <span class='dropdown-toggle ms-2'></span></span>
+                    <span>Usuario</span>
+                </span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Loggout</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+            </ul>
+        </div>
+
+                    <partial name="_LoginPartial" />
+    </aside>
+    <div class="container main open-main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted main open-main">
+        <div class="container">
+            &copy; 2023 - Estoque.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

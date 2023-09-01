@@ -1,0 +1,256 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.sb-toggle {
+    height: 60px;
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    margin-left: 55px;
+    transition: 0.4s;
+    position: fixed;
+}
+
+.icon-sb-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 48px;
+    padding: 2px 0px 0px 1px;
+    border-radius: 24px;
+    line-height: 1;
+    transition: all 0.4s;
+}
+
+    .icon-sb-toggle i {
+        position: relative;
+        font-size: 24px;
+        transition: 0.2s;
+    }
+
+.sb-container {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 48px;
+    height: 100%;
+    padding: 0px 5px 15px 5px;
+    border-right: 1px solid #2f3336;
+    transition: all 0.35s;
+    color: #dee2e6;
+}
+
+.sb-logo {
+    height: 60px;
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    transition: 0.4s;
+    margin-bottom: 40px;
+    margin-top: 11px;
+}
+
+.icon-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 48px;
+    padding: 2px 0px 0px 1px;
+    border-radius: 24px;
+    line-height: 1;
+    transition: all 0.4s;
+}
+
+.sd-img-logo {
+    width: 38px;
+    min-height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.4s;
+}
+
+.sb-nav {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: padding 0.4s;
+    /* margin-left: 7px; */
+}
+
+.sb-coluna {
+    height: 60px;
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+
+.icon-sb-coluna {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    height: 48px;
+    padding: 1px 16px 0px 9px;
+    border-radius: 10px;
+    width: 100%;
+    line-height: 1;
+    transition: all 0.4s;
+}
+
+    .icon-sb-coluna:hover {
+        /* background: rgba(255,255,255,0.08); */
+        background: #6c5dd3;
+        color: white;
+    }
+
+    .icon-sb-coluna i {
+        position: relative;
+        font-size: 19px;
+        transition: 0.2s;
+    }
+
+.sb-item-coluna {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sb-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 48px;
+    /* padding: 2px 16px 0px 12px;  */
+    border-radius: 24px;
+    width: 100%;
+    line-height: 1;
+    transition: all 0.4s;
+    white-space: nowrap;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.sb-desc-usuario {
+    margin-left: 5px;
+    margin-top: 4px;
+    font-size: 16px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sb-img-user {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    margin-left: 2px;
+}
+
+    .sb-img-user:hover {
+        transform: scale(1.1);
+    }
+
+.main {
+    margin-left: 110px;
+    margin-right: 30px;
+    overflow: hidden;
+    transition: margin 0.4s;
+    position: relative;
+    color: white;
+    bottom: 12px;
+}
+
+
+@media (width < 920px) {
+    .main {
+        margin-left: 105px;
+        margin-right: 23px;
+    }
+}
+
+/******** INTERATIVIDADE SIDEBAR DESKTOP ******/
+
+.open-sb-toggle {
+    margin-left: 188px !important;
+    z-index: 999;
+}
+
+.open-sb-container {
+    width: 223px !important;
+}
+
+.open-logo {
+    width: 85px !important;
+    margin-left: 5px !important;
+}
+
+.open-icon-sombra {
+    width: none !important;
+}
+
+.open-desc-menu {
+    opacity: 1;
+    visibility: visible;
+    font-size: 15px;
+}
+
+.open-sb-nav {
+    padding: 0px 10px 0px 8px;
+    transition: padding 0.4s;
+}
+
+.open-main {
+    margin-left: 240px;
+    margin-right: 15px;
+    margin-top: 0;
+}
+
+z-index-3 {
+    z-index: 1003 !important;
+    position: relative !important;
+}
+
+z-index-2 {
+    z-index: 1002 !important;
+    position: relative !important;
+}
+
+z-index-1 {
+    z-index: 1001 !important;
+    position: relative !important;
+}
