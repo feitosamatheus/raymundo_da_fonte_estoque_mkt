@@ -3,7 +3,7 @@
     justify-content: space-between;
     width: 100%;
     position: fixed !important;
-    height: 48px;
+    height: 52px;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,0.375)!important;
 }
 
@@ -18,7 +18,7 @@
     font-size: 21px;
     padding: 4px 8px;
     border-radius: 50%;
-    transition: all 0.4s;
+    transition: all 0.2s;
 }
 
 .icon-header:hover {
@@ -47,7 +47,7 @@
     /* padding: 2px 0px 0px 1px; */
     border-radius: 24px;
     line-height: 1;
-    transition: all 0.4s;
+    transition: all 0.2s;
 }
 
 .icon-sb-toggle i {
@@ -91,6 +91,7 @@
     transition: 0.4s;
     margin-bottom: 40px;
     margin-top: 11px;
+    transition: all 0.4s;
 }
 
 .icon-logo {
@@ -123,7 +124,7 @@
 }
 
 .sb-coluna {
-    height: 60px;
+    height: 50px;
     background: transparent;
     border: 0;
     font-family: inherit;
@@ -136,29 +137,31 @@
 .icon-sb-coluna {
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    gap: 8px;
     height: 45px;
     border-radius: 100%;
     width: 100%;
-    transition: all 0.1s;
+    transition: all 0.04s;
 }
 
-    .icon-sb-coluna:hover {
-        /* background: rgba(255,255,255,0.08); */
-        background: rgba(0, 0, 0, 0.075);
-        color: #aa0dfd;
-    }
+.icon-sb-coluna:hover {
+    /* background: rgba(255,255,255,0.08); */
+    background: rgba(0, 0, 0, 0.075);
+    color: #aa0dfd;
+}
 
-    .icon-sb-coluna i {
-        position: relative;
-        font-size: 19px;
-        transition: 0.2s;
-        padding: 29%;
-    }
+.sb-icon {
+    position: relative;
+    font-size: 19px;
+    transition: 0.2s;
+    padding: 12px;
+}
 
 .sb-item-coluna {
     opacity: 0;
     visibility: hidden;
+    color: #000;
+    transition: all 0.04s;
 }
 
 .sb-header {
@@ -179,18 +182,31 @@
     visibility: hidden;
 }
 
+.dropdown-toggle-user{
+    display: flex;
+    align-items: center;
+    border: 0;
+    background: transparent;
+    height: 47px;
+    border-radius: 11px;
+    transition: background 0.2s;
+}
+.dropdown-toggle-user:hover{
+    background: rgba(231, 231, 231, 0.151);
+    /* transform: scale(1.05); */
+}
+
 .sb-img-user {
     width: 41px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    transition: transform 0.4s;
+    transition: transform 0.2s;
     margin-left: 2px;
 }
-
-    .sb-img-user:hover {
-        transform: scale(1.1);
-    }
+/* .sb-img-user:hover {
+    transform: scale(1.05);
+} */
 
 .main {
     margin-left: 92px;
@@ -210,40 +226,23 @@
 
 /******** INTERATIVIDADE SIDEBAR DESKTOP ******/
 
-.open-sb-toggle {
-    margin-left: 188px !important;
-    z-index: 999;
-}
-
 .open-sb-container {
-    width: 223px !important;
+    width: 180px !important;
 }
-
-.open-logo {
-    width: 85px !important;
-    margin-left: 5px !important;
+.open-main {
+    margin-left: 200px;
+    margin-right: 15px;
+    margin-top: 0;
 }
-
-.open-icon-sombra {
-    width: none !important;
-}
-
-.open-desc-menu {
+.open-desc-item {
     opacity: 1;
     visibility: visible;
     font-size: 15px;
 }
-
-.open-sb-nav {
-    padding: 0px 10px 0px 8px;
-    transition: padding 0.4s;
+.open-icon-sb-coluna {
+    border-radius: 7px;
 }
 
-.open-main {
-    margin-left: 240px;
-    margin-right: 15px;
-    margin-top: 0;
-}
 
 .z-index-3 {
     z-index: 1003 !important;
