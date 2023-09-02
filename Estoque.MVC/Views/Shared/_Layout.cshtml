@@ -14,7 +14,7 @@
     <header class="z-index-3 bg-header header">
         <div class="d-flex align-items-center justify-content-center" >
             <div class=" d-flex justify-content-center" style="width: 60px;">
-                <button onClick={props.onClick} class="sb-toggle">
+                <button class="sb-toggle btn-toggle" >
                     <span class="icon-sb-toggle">
                         <i class="icon-header bi bi-list"></i>
                     </span>
@@ -97,6 +97,17 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        var toggle = document.querySelector('.btn-toggle');
+        var sideContainer = document.querySelector('.sb-container');
+        var main = document.querySelector('.main');
+        
+        toggle.onclick = function(){
+            sideContainer.classList.add("open-sb-container");
+            main.classList.add("open-main ");
+        };
+
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
