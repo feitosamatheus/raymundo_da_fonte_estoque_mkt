@@ -10,77 +10,90 @@
     <link rel="stylesheet" href="~/css/layout/style-custom-layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Estoque.MVC.styles.css" asp-append-version="true" />
 </head>
-<body class="bg-dark">
-    <header class="z-index-3 bg-header">
-        <nav class="navbar navbar-light box-shadow mb-3">
-            <div class="container-fluid d-flex justify-content-end">
-                <div class="d-flex justify-content-end ">
-                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </div>
+<body style="background: #F7F9FC !important;">
+    <header class="z-index-3 bg-header header">
+        <div class="d-flex align-items-center justify-content-center" >
+            <div class=" d-flex justify-content-center" style="width: 60px;">
+                <button onClick={props.onClick} class="sb-toggle">
+                    <span class="icon-sb-toggle">
+                        <i class="icon-header bi bi-list"></i>
+                    </span>
+                </button>
             </div>
-        </nav>
+            <div class=" d-flex justify-content-center ms-3">
+                <button onClick={props.onClick} class="sb-toggle">
+                    <span class="icon-sb-toggle d-flex flex-nowrap align-items-center ">
+                        @* <img src="https://www.raymundodafonte.com.br/public/site/images/brand/brand-raymundo-da-fonte.png" alt="" width="263px"> *@
+                        <img src="https://www.raymundodafonte.com.br/public/site/images/brand/icon-raymundo-da-fonte.png" alt="" width="32px;">
+                        <span class="ms-2">Raymundo da Fonte</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <nav class="navbar navbar-light box-shadow">
+                <div class="container-fluid d-flex justify-content-end">
+                    <div class="d-flex justify-content-end me-2">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy"><i style="font-size:21px;" class="icon-header bi bi-bell"></i></a>
+                         <button class="sb-header" type="button" aria-expanded="false">
+                            <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="sb-img-user"></Image>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
-    <button onClick={props.onClick} class="sb-toggle open-sb-toggle">
-        <span class="icon-sb-toggle">
-            <i class="fa fa-align-justify"></i>
-            <span></span>
-        </span>
-    </button>
-    <aside class="sb-container open-sb-container">
-        <a class="sb-logo" to={'/'}>
-        <span class="icon-logo">
-            @*<Image src={srcLogo} alt="logomarca" class={sidebarLogo}></Image>*@
-            <span></span>
-        </span>
-        </a>
-        <nav class="sb-nav open-sb-nav">
-            <a class="sb-coluna" href="/">
-            <span class="icon-sb-coluna open-icon-sombra">
-                    <i class="bi bi-unity"></i>
-                    <span class="sb-item-coluna open-desc-menu">Início</span>
-            </span>
-            </a>
-            <a class="sb-coluna" href="/agendamento">
-            <span class="icon-sb-coluna open-icon-sombra">
-                <i class="bi bi-calendar-event"></i>
-                <span class="sb-item-coluna open-desc-menu">Agendamento</span>
-            </span>
-            </a>
-            <a class="sb-coluna" href="/historico">
-            <span class="icon-sb-coluna open-icon-sombra">
-                <i class="bi bi-app"></i>
-                <span class="sb-item-coluna open-desc-menu">Historico</span>
-            </span>
-            </a>
-        </nav>
-        <div class="dropdown dropup">
-            <button class="sb-header " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="sb-img-user"></Image>
-                <span class={descUsuario}>
-                    <span class='d-block mb-1 fw-semibold'>{user.nome} <span class='dropdown-toggle ms-2'></span></span>
-                    <span>Usuario</span>
+    <main class="container-conteudo-pri">
+        <aside class="sb-container">
+            <nav class="sb-nav">
+                <a class="sb-coluna" href="/">
+                    <span class="icon-sb-coluna ">
+                            <i class="bi bi-box-seam-fill"></i>
+                            <span class="sb-item-coluna">Estoque</span>
+                    </span>
+                </a>
+                <a class="sb-coluna" href="/agendamento">
+                <span class="icon-sb-coluna ">
+                    <i class="bi bi-card-checklist"></i>
+                    <span class="sb-item-coluna ">Pedidos</span>
                 </span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Loggout</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-            </ul>
-        </div>
+                </a>
+                <a class="sb-coluna" href="/historico">
+                <span class="icon-sb-coluna ">
+                    <i class="bi bi-bar-chart-fill"></i> 
+                    <span class="sb-item-coluna ">Duvidas</span>
+                </span>
+                </a>
+            </nav>
+            <nav class="sb-nav border border-0">
+                <a class="sb-coluna" href="/">
+                    <span class="icon-sb-coluna ">
+                            <i class="bi bi-shop-window"></i>
+                            <span class="sb-item-coluna">Estoque</span>
+                    </span>
+                </a>
+                <a class="sb-coluna" href="/agendamento">
+                <span class="icon-sb-coluna ">
+                    <i class="bi bi-question-circle"></i>
+                    <span class="sb-item-coluna ">Pedidos</span>
+                </span>
+                </a>
+            </nav>
 
-                    <partial name="_LoginPartial" />
-    </aside>
-    <div class="container main open-main">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted main open-main">
-        <div class="container">
-            &copy; 2023 - Estoque.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </aside>
+        <div class="main">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+            <partial name="_LoginPartial" />
         </div>
-    </footer>
+        <footer class="border-top footer text-muted main">
+            <div class="container">
+                &copy; 2023 - Estoque.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </main>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
