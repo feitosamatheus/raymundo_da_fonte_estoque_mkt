@@ -35,18 +35,37 @@
                 <div class="container-fluid d-flex justify-content-end">
                     <div class="d-flex justify-content-end me-2 align-items-center">
                         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy"><i style="font-size:18px;" class="icon-header bi bi-bell"></i></a>
-                        <button type="button" class="dropdown-toggle-user" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span class="bi bi-arrow-90deg-down mt-1 ms-2 text-light"></span>
+                        <button type="button" class="dropdown-toggle-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            @* <span class="bi bi-arrow-90deg-down mt-1 ms-2 text-light"></span> *@
                             <span class="sb-header p-1" type="button" aria-expanded="false">
                                 <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="sb-img-user"></Image>
                             </span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Matheus Feitosa</a></li>
-                            <li><a class="dropdown-item" href="#">Filial 102</a></li>
+                        <div class="dropdown-menu dropdown-menu-custom shadow-lg" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                            <li class="d-flex justify-content-center pt-2">
+                                <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="sb-img-user-dropdown" width=""></Image>
+                            </li>
+                            <li class="d-flex justify-content-center mt-1 ps-2 pe-2">
+                                <div class="d-flex justify-content-center flex-column lh-sm">
+                                    <h5 class="text-center text-break" style="font-weight: 600;">Matheus Feitosa</h5>
+                                    <p class="text-break">feitosamatheus1997@hotmail.com</p>
+                                </div>
+                            </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Sair</a></li>
-                        </ul>
+                            <li class="text-center mb-2">
+                                <span class="">
+                                    @* <i class="bi bi-building-fill me-2"></i>  *@
+                                    Unidade: 102-Paulista
+                                </span>
+                            </li>
+                            @* <li><hr class="dropdown-divider"></li> *@
+                            <li class="text-center overflow-hidden bg-primary" style="border-radius: 0px 0px 12px 12px; border-top: 1px solid #00000029;">
+                                <a class="dropdown-item p-2 text-light" href="#">
+                                    <i class="bi bi-box-arrow-right me-1"></i>
+                                     Sair
+                                </a>
+                            </li>
+                        </div>
                     </div>
                 </div>
             </nav>
