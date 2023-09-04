@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using System;
+using Estoque.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 

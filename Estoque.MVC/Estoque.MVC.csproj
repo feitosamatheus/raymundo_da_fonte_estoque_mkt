@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Estoque.MVC-4b233dda-ea5f-46eb-bdad-734a68a07da4</UserSecretsId>
   </PropertyGroup>

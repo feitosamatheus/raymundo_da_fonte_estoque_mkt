@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque.Infra.Data
+namespace Estoque.Infra.IoC
 {
     public static class DependencyInjection
     {
