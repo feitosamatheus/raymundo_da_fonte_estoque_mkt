@@ -18,6 +18,7 @@ namespace Estoque.Domain.Entities
         public string DescItem { get; set; }
         public long Quantidade { get; set; }
         public string UrlImagem { get; set; }
+        public string Observacao { get; set; }
         public string InseridoPor { get; set; }
         public DateTime InseridoEm { get; set; }
         public bool Status { get; set; }

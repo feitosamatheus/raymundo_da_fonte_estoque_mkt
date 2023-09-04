@@ -17,30 +17,8 @@ namespace Estoque.Infra.Data.EntityConfig
             builder.Property(p => p.IdFilial).IsRequired();
             builder.Property(p => p.CodFilial).HasMaxLength(100).IsRequired();
             builder.Property(p => p.DescFilial).HasMaxLength(100).IsRequired();
-            builder.Property(p => p.IsFilial).IsRequired();
+            builder.Property(p => p.IsMatriz).IsRequired();
             builder.Property(p => p.Status).IsRequired();
-
-            //builder.HasData(
-            //    new Filial
-            //    {
-            //        CodFilial = 101,
-            //        DescFilial = "MATRIZ",
-            //        IsFilial = true,
-            //        Status = true,
-            //        InseridoPor = "54321",
-            //        InseridoEm = DateTime.Now
-            //    }
-            //    //,
-            //    //new Filial
-            //    //{
-            //    //    CodFilial = 102,
-            //    //    DescFilial = "Salvador",
-            //    //    IsFilial = false,
-            //    //    Status = true,
-            //    //    InseridoPor = "54321",
-            //    //    InseridoEm = DateTime.Now
-            //    //}
-            //);
         }
     }
 }

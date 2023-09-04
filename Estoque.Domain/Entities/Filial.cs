@@ -14,7 +14,7 @@ namespace Estoque.Domain.Entities
         public int IdFilial { get; set; }
         public int CodFilial { get; set; }
         public string DescFilial { get; set; }
-        public bool IsFilial { get; set; }
+        public bool IsMatriz { get; set; }
         public string InseridoPor { get; set; }
         public DateTime InseridoEm { get; set; }
         public bool Status { get; set; }
