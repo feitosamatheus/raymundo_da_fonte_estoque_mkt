@@ -22,7 +22,11 @@ namespace Estoque.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-        
+
+            builder.Entity<Filial>().HasKey(c => c.IdFilial);
+            builder.Entity<Item>().HasKey(c => c.IdItem);
+            builder.Entity<Tipo>().HasKey(c => c.IdTipo);
+
             builder.ApplyConfiguration(new FilialConfig());          
             builder.ApplyConfiguration(new ItemConfig());
             builder.ApplyConfiguration(new TipoConfig());

@@ -13,7 +13,6 @@ namespace Estoque.Infra.Data.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.HasKey(c => c.IdItem);
             builder.Property(p => p.DescItem).HasMaxLength(100).IsRequired();
             builder.Property(p => p.Quantidade).IsRequired();
             builder.HasOne(p => p.Filial).WithMany(b => b.Itens).HasForeignKey(p => p.IdFilial);
