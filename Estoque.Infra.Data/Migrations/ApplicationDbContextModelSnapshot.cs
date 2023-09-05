@@ -45,7 +45,7 @@ namespace Estoque.MVC.Data.Migrations
                     b.Property<string>("InseridoPor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsFilial")
+                    b.Property<bool>("IsMatriz")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Status")
@@ -72,9 +72,6 @@ namespace Estoque.MVC.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("FilialIdIdFilial")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdFilial")
                         .HasColumnType("int");
 
@@ -87,25 +84,25 @@ namespace Estoque.MVC.Data.Migrations
                     b.Property<string>("InseridoPor")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Observacao")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("Quantidade")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("TipoIdIdTipo")
-                        .HasColumnType("int");
-
                     b.Property<string>("UrlImagem")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdItem");
 
-                    b.HasIndex("FilialIdIdFilial");
+                    b.HasIndex("IdFilial");
 
-                    b.HasIndex("TipoIdIdTipo");
+                    b.HasIndex("IdTipo");
 
-                    b.ToTable("Items");
+                    b.ToTable("Itens");
                 });
 
             modelBuilder.Entity("Estoque.Domain.Entities.Tipo", b =>
@@ -339,17 +336,21 @@ namespace Estoque.MVC.Data.Migrations
 
             modelBuilder.Entity("Estoque.Domain.Entities.Item", b =>
                 {
-                    b.HasOne("Estoque.Domain.Entities.Filial", "FilialId")
-                        .WithMany()
-                        .HasForeignKey("FilialIdIdFilial");
+                    b.HasOne("Estoque.Domain.Entities.Filial", "Filial")
+                        .WithMany("Itens")
+                        .HasForeignKey("IdFilial")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Estoque.Domain.Entities.Tipo", "TipoId")
-                        .WithMany()
-                        .HasForeignKey("TipoIdIdTipo");
+                    b.HasOne("Estoque.Domain.Entities.Tipo", "Tipo")
+                        .WithMany("Itens")
+                        .HasForeignKey("IdTipo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("FilialId");
+                    b.Navigation("Filial");
 
-                    b.Navigation("TipoId");
+                    b.Navigation("Tipo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -401,6 +402,16 @@ namespace Estoque.MVC.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Estoque.Domain.Entities.Filial", b =>
+                {
+                    b.Navigation("Itens");
+                });
+
+            modelBuilder.Entity("Estoque.Domain.Entities.Tipo", b =>
+                {
+                    b.Navigation("Itens");
                 });
 #pragma warning restore 612, 618
         }
