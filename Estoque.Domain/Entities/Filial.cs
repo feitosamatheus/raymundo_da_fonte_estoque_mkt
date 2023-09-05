@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Estoque.Domain.Entities
 {
     public class Filial
     {
-        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdFilial { get; set; }
         public int CodFilial { get; set; }
         public string DescFilial { get; set; }
@@ -18,5 +18,7 @@ namespace Estoque.Domain.Entities
         public string InseridoPor { get; set; }
         public DateTime InseridoEm { get; set; }
         public bool Status { get; set; }
+
+        public ICollection<Item> Itens { get; set; }
     }
 }

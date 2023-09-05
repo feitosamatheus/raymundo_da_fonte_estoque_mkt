@@ -15,6 +15,7 @@ namespace Estoque.Infra.Data.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Tipo> builder)
         {
+            builder.HasKey(c => c.IdTipo);
             builder.Property(p => p.IdTipo).IsRequired();
             builder.Property(p => p.DescTipo).HasMaxLength(100).IsRequired();
             builder.Property(p => p.Status).IsRequired();

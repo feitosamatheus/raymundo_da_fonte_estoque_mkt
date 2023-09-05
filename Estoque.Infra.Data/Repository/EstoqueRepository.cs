@@ -21,14 +21,14 @@ namespace Estoque.Infra.Data.Repository
 
         public async Task<Item> GetItemPorId(int id)
         {
-            var resultado = await _context.Items.FirstAsync(i => i.IdItem == id);
+            var resultado = await _context.Itens.FirstAsync(i => i.IdItem == id);
             return resultado;
 
         }
 
         public async Task<IEnumerable<Item>> GetItems()
         {
-            var resultado =  await _context.Items.ToListAsync();
+            var resultado =  await _context.Itens.ToListAsync();
             return resultado;
         }
     }

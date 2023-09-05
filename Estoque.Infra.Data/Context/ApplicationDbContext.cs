@@ -16,21 +16,17 @@ namespace Estoque.Infra.Data.Context
         }
 
         public DbSet<Filial> Filiais { get; set; }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Item> Itens { get; set; }
         public DbSet<Tipo> Tipos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
         
-            builder.Entity<Filial>().HasKey(c => c.IdFilial);
-            builder.ApplyConfiguration(new FilialConfig());
-
-            builder.Entity<Item>().HasKey(c => c.IdItem);
+            builder.ApplyConfiguration(new FilialConfig());          
             builder.ApplyConfiguration(new ItemConfig());
-
-            builder.Entity<Tipo>().HasKey(c => c.IdTipo);
             builder.ApplyConfiguration(new TipoConfig());
+
         }
     }
 }

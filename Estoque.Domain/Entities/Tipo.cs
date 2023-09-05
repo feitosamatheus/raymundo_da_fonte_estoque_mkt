@@ -10,12 +10,12 @@ namespace Estoque.Domain.Entities
 {
     public class Tipo
     {
-        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdTipo { get; set; }
         public string DescTipo { get; set; }
         public string InseridoPor { get; set; }
         public DateTime InseridoEm { get; set; }
         public bool Status { get; set; }
 
+        public ICollection<Item> Itens { get; set; }
     }
 }

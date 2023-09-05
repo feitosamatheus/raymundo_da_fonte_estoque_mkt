@@ -22,7 +22,7 @@ namespace Estoque.Application.ViewModels.Estoque
         [DisplayName("Descrição")]
         public string DescItem { get; set; }
 
-        [DisplayName("Quntidade")]
+        [DisplayName("Quantidade")]
         public long Quantidade { get; set; }
 
         [DisplayName("Imagem")]
