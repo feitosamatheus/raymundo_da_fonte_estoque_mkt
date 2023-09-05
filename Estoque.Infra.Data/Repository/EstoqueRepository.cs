@@ -1,6 +1,7 @@
 ﻿using Estoque.Domain.Entities;
 using Estoque.Domain.Interfaces;
 using Estoque.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,17 @@ namespace Estoque.Infra.Data.Repository
             _context = contexto;
         }
 
-        public Item GetItemPorId(int id)
+        public async Task<Item> GetItemPorId(int id)
         {
-            return _context.Items.First(i => i.IdItem == id);
+            var resultado = await _context.Items.FirstAsync(i => i.IdItem == id);
+            return resultado;
 
         }
 
-        public IEnumerable<Item> GetItems()
+        public async Task<IEnumerable<Item>> GetItems()
         {
-            return _context.Items;
+            var resultado =  await _context.Items.ToListAsync();
+            return resultado;
         }
     }
 }

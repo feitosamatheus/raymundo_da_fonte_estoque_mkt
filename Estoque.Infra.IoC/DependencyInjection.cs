@@ -1,4 +1,8 @@
-﻿using Estoque.Infra.Data.Context;
+﻿using Estoque.Application.Interfaces;
+using Estoque.Application.Services;
+using Estoque.Domain.Interfaces;
+using Estoque.Infra.Data.Context;
+using Estoque.Infra.Data.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +27,9 @@ namespace Estoque.Infra.IoC
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IEstoqueRepository, EstoqueRepository>();
+            services.AddScoped<IEstoqueService, EstoqueService>();
         
             return services;
         }

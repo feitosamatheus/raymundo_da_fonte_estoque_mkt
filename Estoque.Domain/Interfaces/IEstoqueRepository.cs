@@ -9,7 +9,7 @@ namespace Estoque.Domain.Interfaces
 {
     public interface IEstoqueRepository
     {
-        IEnumerable<Item> GetItems();
-        Item GetItemPorId(int id);
+        Task<IEnumerable<Item>> GetItems();
+        Task<Item> GetItemPorId(int id);
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using System;
 using Estoque.Infra.IoC;
+using Estoque.MVC.MappingConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 //    options.UseSql (connectionString));
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddMvc().AddRazorRuntimeCompilation();

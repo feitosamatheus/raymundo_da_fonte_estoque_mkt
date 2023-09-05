@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Estoque.Application.ViewModels.Estoque.EstoqueViewModel>
+
+@{
+    ViewData["Title"] = "Estoque";
+}
+
+@foreach(var item in Model)
+{
+    <h4>
+        @item.DescItem
+    </h4>
+}
+
