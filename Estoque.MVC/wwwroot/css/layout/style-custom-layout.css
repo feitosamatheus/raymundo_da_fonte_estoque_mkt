@@ -230,7 +230,7 @@
 
 .main {
     margin-left: 72px;
-    margin-right: 30px;
+    margin-right: 4px;
     overflow: hidden;
     transition: margin 0.4s;
     color: black;
@@ -283,7 +283,19 @@
 .bg-header-gradient {
     background-image: url("/img/background/bg-header-gradient.jpg") !important;
 }
+
+.tipo-fisico {
+    cursor: pointer;
+    color: #3d4b52a1;
+    font-weight: 600;
+}
+.tipo-debito {
+    cursor: pointer;
+    color: #3d4b52a1;
+    font-weight: 600;
+}
+
 .active-navbar-estoque {
-    border-bottom: 3px solid #005f99 !important;
-    font-weight: 600 !important;
+    border-bottom: 2px solid #96a1a7 !important;
+    color: #3d4b52;
 }
