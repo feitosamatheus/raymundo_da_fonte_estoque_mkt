@@ -4,10 +4,111 @@
     ViewData["Title"] = "Estoque";
 }
 
-@foreach(var item in Model)
-{
-    <h4>
-        @item.DescItem
-    </h4>
-}
+<div class="d-flex align-items-start">
+    <i class="bi bi-box2 me-2 fs-6"></i>
+    <h5>
+        Estoque
+    </h5>
+    
+</div>
 
+<p>Lista de itens</p>
+
+
+<div class="border-bottom" id="">
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item border-0 rounded-0 bg-transparent tipo-fisico"><a>Físico</a></li>
+        <li class="list-group-item border-0 rounded-0 bg-transparent tipo-debito"><a>Débito</a></li>
+    </ul>
+</div>
+
+<div class="row mt-4">
+    <div class="col-3">
+        <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Item</span>
+            <input type="text" class="form-control" placeholder="Procurar" aria-label="Username" aria-describedby="addon-wrapping">
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Filial</label>
+            <select class="form-select" id="inputGroupSelect01">
+                <option selected>Selecione...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-12 row ">
+        @foreach(var item in Model)
+        {
+            @if(item.IdTipo == 1){
+                <div class="col-12 card mb-2 p-2  ps-5 d-flex ">
+                    <div class="card-body">
+                        <div>
+                            <img src="@item.UrlImagem" width="20">
+                        </div>
+                        <div>
+                            <p>@item.CodItem</p>
+                            @item.DescItem
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-6 row">
+        @foreach (var item in Model)
+        {
+            @if (item.IdFilial == 2)
+            {
+                <div class="col-12">
+                    <img src="@item.UrlImagem" width="20">
+                    <p>@item.CodItem</p>
+                    @item.DescItem
+                </div>
+            }
+        }
+    </div>
+    }
+}
+</div>
+
+<script>
+    var navbarOptionsFisico = document.querySelector(".tipo-fisico");
+    var navbarOptionsDebito = document.querySelector(".tipo-debito");
+
+    navbarOptionsFisico.onclick = function () {
+        toggleNavbar(1);
+    };
+    
+    navbarOptionsDebito.onclick = function () {
+        toggleNavbar(2);
+    };
+
+
+    function toggleNavbar(tipo) {
+
+        switch(tipo){
+            case 1: 
+                navbarOptionsFisico.classList.add("active-navbar-estoque");
+                navbarOptionsDebito.classList.remove("active-navbar-estoque");
+                break;
+            case 2:
+                navbarOptionsDebito.classList.add("active-navbar-estoque");
+                navbarOptionsFisico.classList.remove("active-navbar-estoque");
+                break;
+        }
+        
+    }
+
+
+
+</script>

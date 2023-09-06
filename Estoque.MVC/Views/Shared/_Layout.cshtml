@@ -34,7 +34,7 @@
             <nav class="navbar navbar-light box-shadow">
                 <div class="container-fluid d-flex justify-content-end">
                     <div class="d-flex justify-content-end me-2 align-items-center">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy"><i style="font-size:18px;" class="icon-header bi bi-bell"></i></a>
+                        @*<a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy"><i style="font-size:18px;" class="icon-header bi bi-bell"></i></a>*@
                         <button type="button" class="dropdown-toggle-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                             @* <span class="bi bi-arrow-90deg-down mt-1 ms-2 text-light"></span> *@
                             <span class="sb-header p-1" type="button" aria-expanded="false">
@@ -74,7 +74,7 @@
     <section class="container-conteudo-pri">
         <aside class="sb-container">
             <nav class="sb-nav">
-                <a class="sb-coluna" href="/">
+                <a class="sb-coluna" asp-area="" asp-controller="Estoque" asp-action="Index">
                     <span class="icon-sb-coluna ">
                         <i class="bi bi-box-seam-fill sb-icon"></i>
                         <span class="sb-item-coluna">Estoque</span>
@@ -112,13 +112,13 @@
             <section class="pb-3">
                 @RenderBody()
             </section>
-            <partial name="_LoginPartial" />
+            @*<partial name="_LoginPartial" />*@
         </main>
-        <footer class="border-top footer text-muted main">
+       @* <footer class="border-top footer text-muted main">
             <div class="container">
                 &copy; 2023 - Estoque.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
-        </footer>
+        </footer>*@
     </section>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

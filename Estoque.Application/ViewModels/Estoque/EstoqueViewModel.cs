@@ -14,10 +14,10 @@ namespace Estoque.Application.ViewModels.Estoque
         public int CodItem { get; set; }
 
         [DisplayName("Filial")]
-        public Filial IdFilial { get; set; }
+        public int IdFilial { get; set; }
 
         [DisplayName("Tipo")]
-        public Tipo IdTipo { get; set; }
+        public int IdTipo { get; set; }
 
         [DisplayName("Descrição")]
         public string DescItem { get; set; }
