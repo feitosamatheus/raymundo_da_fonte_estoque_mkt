@@ -14,11 +14,10 @@ namespace Estoque.Infra.Data.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Filial> builder)
         {
+            builder.HasKey(c => c.IdFilial);
             builder.Property(p => p.IdFilial).IsRequired();
-            builder.Property(p => p.CodFilial).HasMaxLength(100).IsRequired();
-            builder.Property(p => p.DescFilial).HasMaxLength(100).IsRequired();
+            builder.Property(p => p.CodFilial).IsRequired();
             builder.Property(p => p.IsMatriz).IsRequired();
-            builder.Property(p => p.Status).IsRequired();
         }
     }
 }

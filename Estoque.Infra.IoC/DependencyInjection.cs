@@ -30,6 +30,8 @@ namespace Estoque.Infra.IoC
 
             services.AddScoped<IEstoqueRepository, EstoqueRepository>();
             services.AddScoped<IEstoqueService, EstoqueService>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<IPedidoService, PedidoService>();
         
             return services;
         }

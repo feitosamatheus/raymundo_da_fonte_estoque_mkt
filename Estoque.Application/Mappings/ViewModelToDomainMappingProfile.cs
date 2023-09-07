@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Estoque.Application.ViewModels.Estoque;
+using Estoque.Application.ViewModels.Pedido;
 using Estoque.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Estoque.Application.Mappings
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<EstoqueViewModel, Item>();
+            CreateMap<PedidoViewModel, Pedido>();
         }
     }
 }

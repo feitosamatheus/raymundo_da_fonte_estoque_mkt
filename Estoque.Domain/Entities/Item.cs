@@ -14,8 +14,9 @@ namespace Estoque.Domain.Entities
         public int CodItem { get; set; }
         public string DescItem { get; set; }
         public long Quantidade { get; set; }
-        public string UrlImagem { get; set; }
+        public decimal PrecoItem { get; set; }
         public string Observacao { get; set; }
+        public string UrlImagem { get; set; }
         public string InseridoPor { get; set; }
         public DateTime InseridoEm { get; set; }
         public bool Status { get; set; }
@@ -25,5 +26,8 @@ namespace Estoque.Domain.Entities
 
         public int IdTipo { get; set; }
         public Tipo Tipo { get; set; }
+
+        public ICollection<Pedido> Pedidos { get; set; }
+
     }
 }
