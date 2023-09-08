@@ -11,5 +11,7 @@ namespace Estoque.Application.Interfaces
     public interface IPedidoService
     {
         Task<PedidoViewModel> GetPedido(int id);
+
+        PedidoViewModel GetPedidoMock();
     }
 }

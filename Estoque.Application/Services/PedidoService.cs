@@ -33,5 +33,15 @@ namespace Estoque.Application.Services
             return _maper.Map<PedidoViewModel>(resultado);
 
         }
+
+        public PedidoViewModel GetPedidoMock()
+        {
+            var resultado =  _pedidoRepository.GetPedidoMock();
+
+
+            var convert = _maper.Map<PedidoViewModel>(resultado);
+
+            return convert;
+        bgigihj}
     }
 }
