@@ -14,7 +14,13 @@ namespace Estoque.MVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var resultado = await _pedidoService.GetPedido(1);
+            var resultado = await _pedidoService.GetPedido(3);
+            return View(resultado);
+        }
+
+        public IActionResult IndexMock()
+        {
+            var resultado =  _pedidoService.GetPedidoMock();
             return View(resultado);
         }
     }

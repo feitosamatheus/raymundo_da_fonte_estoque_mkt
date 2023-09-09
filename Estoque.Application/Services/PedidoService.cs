@@ -15,7 +15,7 @@ namespace Estoque.Application.Services
 {
     public class PedidoService : IPedidoService
     {
-        private readonly IPedidoRepository _pedidoRepository;
+        private IPedidoRepository _pedidoRepository;
         private readonly IMapper _maper;
 
 
@@ -39,9 +39,9 @@ namespace Estoque.Application.Services
             var resultado =  _pedidoRepository.GetPedidoMock();
 
 
-            var convert = _maper.Map<PedidoViewModel>(resultado);
+            var conversao = _maper.Map<PedidoViewModel>(resultado);
 
-            return convert;
-        bgigihj}
+            return conversao;
+        }
     }
 }

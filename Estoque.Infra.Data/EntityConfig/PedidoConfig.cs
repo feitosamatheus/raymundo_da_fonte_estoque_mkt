@@ -16,6 +16,11 @@ namespace Estoque.Infra.Data.EntityConfig
             builder.HasKey(c => c.IdPedido);
             builder.Property(p => p.IdPedido).IsRequired();
             builder.Property(p => p.CodPedido).IsRequired();
+            builder.Property(p => p.IdCliente).IsRequired();
+            builder.Property(p => p.IdItem).IsRequired();
+            builder.Property(p => p.IdSituacao).IsRequired();
+            builder.Property(p => p.QtdAtendida).IsRequired();
+            builder.Property(p => p.QtdPedida).IsRequired();
             builder.HasOne(p => p.Situacao).WithMany(b => b.Pedidos).HasForeignKey(p => p.IdSituacao);
             builder.HasOne(p => p.Item).WithMany(b => b.Pedidos).HasForeignKey(p => p.IdItem);
             builder.HasOne(p => p.Cliente).WithMany(b => b.Pedidos).HasForeignKey(p => p.IdCliente);

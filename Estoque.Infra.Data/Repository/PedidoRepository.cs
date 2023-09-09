@@ -20,7 +20,16 @@ namespace Estoque.Infra.Data.Repository
 
         public async Task<Pedido> GetPedido(int id)
         {
-            return await _context.Pedidos.FirstAsync(i => i.IdPedido == id);
+            var resultado = await _context.Pedidos.FirstAsync(i => i.IdPedido == id);
+            return resultado;
+        }
+
+        public Pedido GetPedidoMock()
+        {
+            return new Pedido
+            {
+                CodPedido = "TESTE"
+            };
         }
     }
 }

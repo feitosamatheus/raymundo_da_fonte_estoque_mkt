@@ -10,5 +10,7 @@ namespace Estoque.Domain.Interfaces
     public interface IPedidoRepository
     {
         Task<Pedido> GetPedido(int id);
+
+        Pedido GetPedidoMock();
     }
 }

@@ -13,7 +13,8 @@ namespace Estoque.Application.Mappings
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Pedido, PedidoViewModel>().ForMember(p => p.CodPedido, pv => pv.MapFrom(p => p.CodPedido));
+            //CreateMap<Pedido, PedidoViewModel>().ForMember(p => p.CodPedido, pv => pv.MapFrom(p => p.CodPedido));
+            CreateMap<Pedido, PedidoViewModel>();
             CreateMap<Item, EstoqueViewModel>();
         }
     }
