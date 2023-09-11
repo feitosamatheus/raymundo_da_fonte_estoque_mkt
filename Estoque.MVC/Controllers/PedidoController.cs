@@ -20,8 +20,14 @@ namespace Estoque.MVC.Controllers
 
         public IActionResult IndexMock()
         {
-            var resultado =  _pedidoService.GetPedidoMock();
+            return View();
+        }
+
+        public IActionResult IndexMock(string filter, int pageindex = 1, string sort = "Nome")
+        {
+            var resultado = _pedidoService.GetPedidoMock();
             return View(resultado);
         }
+
     }
 }
