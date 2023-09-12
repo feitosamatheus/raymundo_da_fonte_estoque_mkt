@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Estoque.Application.ViewModels.Estoque;
+using Estoque.Application.ViewModels.Infra;
 
 namespace Estoque.Application.Interfaces
 {
     public interface IEstoqueService
     {
-        Task<IEnumerable<EstoqueViewModel>> GetItems();
         Task<EstoqueViewModel> GetItemPorId(int id);
+        IQueryable<EstoqueViewModel> GetItensFiltro(string filter);
+        IEnumerable<FilialViewModel> GetFiliais();
     }
 }

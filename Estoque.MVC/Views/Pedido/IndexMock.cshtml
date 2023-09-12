@@ -1,3 +1,57 @@
-﻿@model Estoque.Application.ViewModels.Pedido.PedidoViewModel;
+﻿@*@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>*@
+@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>
 
-<h1>@Model.CodPedido</h1>
+Total de Pedidos : @Model.TotalRecordCount
+
+<form method="get" class="form-inline">
+
+    <input name="filter" class="form-control" placeholder="filtro"
+           value="@Model.RouteValue["Filter"]" />
+
+    <button type="submit" class="btn btn-info">Procurar</button>
+</form>
+
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+
+
+@foreach (var item in Model)
+{
+    
+    <h1>@item.CodPedido</h1>
+}
+
+
+
+
+
+@*  INSERT INTO [DatabaseEstoque].[dbo].[Clientes] (CodCliente, NomeCliente)
+--VALUES (463152, 'SALATIEL ANTONIO DA SILVA');
+--VALUES (10840, 'INDÚSTRIAS REUNIDAS RAYMUNDO DA FONTE S/A');
+--VALUES (10019, 'L A GONCALVES');
+--VALUES (477933, 'CENTRAL DE DISTRIBUICAO REDE MAIS LTDA');
+--VALUES (482036, 'ADRIANO FRANCISCO DA SILVA');
+--VALUES (459740, 'THIAGO HENRIQUE DE ALMEIDA FERRO');
+--VALUES (468098, 'EMANNUEL HENRIQUE  DA SILVA SOARES'); *@
+
+
+@*      INSERT INTO [DatabaseEstoque].[dbo].[Pedidos] (
+       [CodPedido]
+	  ,[QtdPedida]
+	  ,[QtdAtendida]
+	  ,[NotaFiscal]
+      ,[IdCliente]
+      ,[IdItem]
+      ,[IdSituacao]
+	  ,[DataPedido]
+	  ,[DataFaturamento]
+	  ,[DataFinalizacao])
+       --VALUES ('PM804423',17,17,153370, 1, 4, 1, '2023-09-12', '2023-09-12', '2023-09-12');
+       --VALUES ('PM804823', 17, 17, 153370, 2, 4, 1, '2023-09-12', '2023-09-12', '2023-09-12');
+       --VALUES ('PM804723',17,17,153370, 3, 5, 1,'2023-09-12', '2023-09-12', '2023-09-12');
+       --VALUES ('PM805823', 17,17,1533701,1, 4, 1, '2023-09-12', '2023-09-12', '2023-09-12'); *@
+@*
+          INSERT INTO [DatabaseEstoque].[dbo].[SituacaoPedido] ([DescSituacao], [Status])
+--VALUES ('At. Total', 1);
+VALUES ('Cancelado', 1); *@

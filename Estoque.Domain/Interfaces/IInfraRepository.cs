@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Estoque.Domain.Interfaces
 {
-    public interface IPedidoRepository
+    public interface IInfraRepository
     {
-        Task<Pedido> GetPedido(int id);
-
-        Pedido GetPedidoMock();
-
-        IQueryable<Pedido> GetPedidos(string filter);
+        Task<IEnumerable<Filial>> GetFiliais();
     }
 }

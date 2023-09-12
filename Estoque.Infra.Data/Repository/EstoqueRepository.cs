@@ -31,5 +31,15 @@ namespace Estoque.Infra.Data.Repository
             var resultado =  await _context.Itens.ToListAsync();
             return resultado;
         }
+
+        public IQueryable<Item> GetItensFiltro(string filter)
+        {
+            var resultado = _context.Itens.AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter))
+                resultado = resultado.Where(r => r.DescItem.Contains(filter));
+
+            return resultado;
+        }
     }
 }

@@ -1,3 +1,23 @@
-﻿@model Estoque.Application.ViewModels.Pedido.PedidoViewModel;
+﻿@*@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>*@
+@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>
 
-<h1>@Model.CodPedido</h1>
+Total de Pedidos : @Model.TotalRecordCount
+
+<form method="get" class="form-inline">
+
+    <input name="filter" class="form-control" placeholder="filtro"
+           value="@Model.RouteValue["Filter"]" />
+
+    <button type="submit" class="btn btn-info">Procurar</button>
+</form>
+
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+
+
+@foreach (var item in Model)
+{
+
+    <h1>@item.CodPedido</h1>
+}

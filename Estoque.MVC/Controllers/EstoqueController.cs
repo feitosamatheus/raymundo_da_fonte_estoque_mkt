@@ -4,8 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Estoque.Application.Interfaces;
+using Estoque.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using ReflectionIT.Mvc.Paging;
 
 namespace Estoque.MVC.Controllers
 {
@@ -20,17 +23,17 @@ namespace Estoque.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "CodItem")
         {
-            var resultado = await _estoqueService.GetItems();
-            return View(resultado);
-        }
+            var filiais = _estoqueService.GetFiliais();
+            ViewBag.Filiais = new MultiSelectList(filiais, "CodFilial", "DescFilial");
 
-        [HttpPost]
-        public async Task<IActionResult> BuscarItemPorId(int id)
-        {
-            var resultado = await _estoqueService.GetItemPorId(id);
-            return View("Error!");
+            var itens = _estoqueService.GetItensFiltro(filter);
+
+            var model = await PagingList.CreateAsync(itens, 1, pageindex, sort, "CodItem");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
     }
 }

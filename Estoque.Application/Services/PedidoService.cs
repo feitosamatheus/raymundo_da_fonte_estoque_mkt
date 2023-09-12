@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Estoque.Application.Interfaces;
 using Estoque.Application.ViewModels.Estoque;
 using Estoque.Application.ViewModels.Pedido;
@@ -42,6 +43,13 @@ namespace Estoque.Application.Services
             var conversao = _maper.Map<PedidoViewModel>(resultado);
 
             return conversao;
+        }
+
+        public IQueryable<PedidoViewModel> GetPedidos(string filter)
+        {
+            var resultado = _pedidoRepository.GetPedidos(filter);
+
+            return resultado.ProjectTo<PedidoViewModel>(_maper.ConfigurationProvider).AsQueryable(); ;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Estoque.Application.ViewModels;
 using Estoque.Application.ViewModels.Estoque;
+using Estoque.Application.ViewModels.Infra;
 using Estoque.Application.ViewModels.Pedido;
 using Estoque.Domain.Entities;
 using System;
@@ -18,6 +20,7 @@ namespace Estoque.Application.Mappings
             //CreateMap<PedidoViewModel, Pedido>().ForMember(p => p.CodPedido, pv => pv.MapFrom(p => p.CodPedido));
             CreateMap<PedidoViewModel, Pedido>();
             CreateMap<EstoqueViewModel, Item>();
+            CreateMap<FilialViewModel, Filial>();
         }
     }
 }

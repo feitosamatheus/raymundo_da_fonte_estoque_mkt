@@ -1,5 +1,6 @@
 ﻿using Estoque.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using ReflectionIT.Mvc.Paging;
 
 namespace Estoque.MVC.Controllers
 {
@@ -12,21 +13,14 @@ namespace Estoque.MVC.Controllers
             _pedidoService = pedidoService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "CodPedido")
         {
-            var resultado = await _pedidoService.GetPedido(3);
-            return View(resultado);
-        }
+            var resultado = _pedidoService.GetPedidos(filter);
 
-        public IActionResult IndexMock()
-        {
-            return View();
-        }
+            var model = await PagingList.CreateAsync(resultado, 2, pageindex, sort, "CodPedido");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
 
-        public IActionResult IndexMock(string filter, int pageindex = 1, string sort = "Nome")
-        {
-            var resultado = _pedidoService.GetPedidoMock();
-            return View(resultado);
+            return View(model);
         }
 
     }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using System;
 using Estoque.Infra.IoC;
 using Estoque.MVC.MappingConfig;
+using ReflectionIT.Mvc.Paging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,11 @@ builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
+builder.Services.AddPaging(options =>
+{
+    options.ViewName = "Bootstrap4";
+    options.PageParameterName = "pageindex";
+});
 
 var app = builder.Build();
 

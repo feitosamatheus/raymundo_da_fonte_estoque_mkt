@@ -31,5 +31,15 @@ namespace Estoque.Infra.Data.Repository
                 CodPedido = "TESTE"
             };
         }
+
+        public IQueryable<Pedido> GetPedidos(string filter)
+        {
+            var resultado = _context.Pedidos.AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter))
+                resultado = resultado.Where(r => r.CodPedido.Contains(filter));
+
+            return resultado;
+        }
     }
 }
