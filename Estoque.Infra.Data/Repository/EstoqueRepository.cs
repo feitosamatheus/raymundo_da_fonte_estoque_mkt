@@ -32,11 +32,17 @@ namespace Estoque.Infra.Data.Repository
             return resultado;
         }
 
-        public IQueryable<Item> GetItensFiltro(string filter)
+        public IQueryable<Item> GetItensFiltro(string filter, int filial)
         {
             var resultado = _context.Itens.AsNoTracking().AsQueryable();
 
+            if (string.IsNullOrEmpty(filter) == false || filial != 0)
+                resultado = resultado.Where(r => r.DescItem.Contains(filter) && r.IdFilial == filial);
+
             if (!string.IsNullOrEmpty(filter))
+                resultado = resultado.Where(r =>  r.DescItem.Contains(filter));
+
+            if (filial != 0)
                 resultado = resultado.Where(r => r.DescItem.Contains(filter));
 
             return resultado;

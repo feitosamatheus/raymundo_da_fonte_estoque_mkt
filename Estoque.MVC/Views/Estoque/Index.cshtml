@@ -11,14 +11,12 @@
     </h4>
 </div>
 
-
 <div class="row mt-3">
-    <div class="col-12 row">
+    <div class="col-12">
         <div class="card mb-3 border-0 p-3 pt-1 pb-4" style="border-top: 2px solid #005f9978 !important;border-radius: 0px; box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;">
             <ul class="list-group list-group-horizontal border-bottom">
-                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-fisico ps-5 pe-5"><a>Físico</a></li>
-                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-debito ps-5 pe-5"><a>Débito</a></li>
-                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-debito ms-auto p-0 me-2" title="Filtro" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-fisico ps-5 pe-5"><a>Filtro</a></li>
+                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-toggle ms-auto p-0 me-2" title="Filtro" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
                     <h4 class="mt-1">
                         <i class="bi bi-filter"></i>
                     </h4>
@@ -35,11 +33,12 @@
                     <div class="col-6 col-lg-3">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Filial</label>
-                            <select asp-for="" asp-items="@ViewBag.Filiais" class="form-select" >
-                   @*                 <option selected>Selecione...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>*@
+                            <select class="form-select" name="filial">
+                                <option value="">Todas...</option>
+                                @foreach (var item in ViewBag.Filiais)
+                                {
+                                    <option value="@item.CodFilial">@item.DescFilial</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -52,119 +51,137 @@
     </div>
 </div>
 
-
-<div class="row mt-4">
-    <div class="col-12 row">
-        <div class="card mb-3 p-0 ps-4 border-0" style="background: #dddddd;">
-            <div class="card-body row" style="width: 100%;padding: 3px;">
-                <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                    <span>Código</span>
-                </div>
-                <div class="col-md-2 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                    <span class="ms-3">Item</span>
-                </div>
-                <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                    <span>Descrição</span>
-                </div>
-                <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                    <span>Quantidade</span>
-                </div>
-                <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                    <span>Observação</span>
+@if (Model.TotalRecordCount > 0)
+{
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card mb-2 p-0 ps-4 border-0" style="background: #dddddd;">
+                <div class="card-body row" style="width: 100%;padding: 3px;">
+                    <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
+                        @*<span>Código</span>*@
+                        @Html.SortableHeaderFor(model => model.CodItem, "CodItem", new {@style="color: #000;text-decoration: none;"})
+                        @if (Model.SortExpression == "CodItem")
+                        {
+                            <i class="bi bi-caret-down-fill mt-1"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-caret-down mt-1"></i>
+                        }
+                    </div>
+                    <div class="col-md-2 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
+                       <span>Item</span>
+                    </div>
+                    <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
+                        @*<span>Descrição</span>*@
+                        @Html.SortableHeaderFor(model => model.DescItem, "DescItem", new {@style="color: #000;text-decoration: none;"})
+                        @if (Model.SortExpression == "DescItem")
+                        {
+                            <i class="bi bi-caret-down-fill mt-1"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-caret-down mt-1"></i>
+                        }
+                    </div>
+                    <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
+                        @*<span>Quantidade</span>*@
+                        @Html.SortableHeaderFor(model => model.Quantidade, "Quantidade", new {@style="color: #000;text-decoration: none;"})
+                        @if (Model.SortExpression == "Quantidade")
+                        {
+                            <i class="bi bi-caret-down-fill mt-1"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-caret-down mt-1"></i>
+                        }
+                    </div>
+                    <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
+                        @*<span>Observação</span>*@
+                        @Html.SortableHeaderFor(model => model.Observacao, "Observacao", new {@style="color: #000;text-decoration: none;"})
+                        @if (Model.SortExpression == "Observacao")
+                        {
+                            <i class="bi bi-caret-down-fill mt-1"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-caret-down mt-1"></i>
+                        }
+                        </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 row ">
-        @foreach(var item in Model)
-        {
-            @if(item.IdTipo == 1){
-                <div class="card mb-3 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
-                    <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
-                        <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
-                            <p>@item.CodItem</p>
-                        </div>
-                        <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
-                            <img src="@item.UrlImagem" width="20">
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <h6 style="color:#3d4b52;">@item.DescItem</h6>
-                        </div>
-                        <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;">
-                            <h6 style="color:#3d4b52;">@item.Quantidade</h6>
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <p>@item.Observacao</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-    <div class="col-12 row">
-        @foreach (var item in Model)
-        {
-            @if (item.IdFilial == 2)
+        <div class="col-12">
+            @foreach(var item in Model)
             {
-                <div class="card mb-3 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
-                    <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
-                        <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
-                            <p>@item.CodItem</p>
-                        </div>
-                        <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center; min-width:57px;">
-                            <img src="@item.UrlImagem" width="20">
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <h6 style="color:#3d4b52;">@item.DescItem</h6>
-                        </div>
-                        <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;">
-                            <h6 style="color:#3d4b52;">@item.Quantidade</h6>
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <p>@item.Observacao</p>
+                @if(item.IdTipo == 1){
+                    <div class="card mb-2 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
+                        <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
+                            <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
+                                <p>@item.CodItem</p>
+                            </div>
+                            <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
+                                <img src="@item.UrlImagem" width="20">
+                            </div>
+                            <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
+                                <h6 style="color:#3d4b52;">@item.DescItem</h6>
+                            </div>
+                            <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;">
+                                <h6 style="color:#3d4b52;">@item.Quantidade</h6>
+                            </div>
+                            <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
+                                <p>@item.Observacao</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
-        }
+        </div>
     </div>
-</div>
 
-<div style="display: flex;justify-content:space-between; font-weight: 600;color:#005f99; padding-right: 11px;">
-    Total de Itens : @Model.TotalRecordCount
-    <vc:pager paging-list="@Model"></vc:pager>
-</div>
+    <div style="display: flex;justify-content:space-between; font-weight: 600;color:#005f99;">
+        <span class="ms-1">Total de Itens : @Model.TotalRecordCount</span>
+        <vc:pager paging-list="@Model"></vc:pager>
+    </div>
+}
+else
+{
+    <div class="card" style="background: #0069a21f;">
+        <div class="card-body">
+            <h5 class="card-title">Ops! Nenhum resultado encontrado.</h5>
+            <p class="card-text">Altere a combinação dos filtros e tente novamente.</p>
+        </div>
+    </div>
+}
 
 <script>
     var navbarOptionsFisico = document.querySelector(".tipo-fisico");
-    var navbarOptionsDebito = document.querySelector(".tipo-debito");
+    //var navbarOptionsDebito = document.querySelector(".tipo-debito");
 
     toggleNavbar(1)
 
-    navbarOptionsFisico.onclick = function () {
-        toggleNavbar(1);
-    };
+    //navbarOptionsFisico.onclick = function () {
+    //    toggleNavbar(1);
+    //};
     
-    navbarOptionsDebito.onclick = function () {
-        toggleNavbar(2);
-    };
-
+    //navbarOptionsDebito.onclick = function () {
+    //    toggleNavbar(2);
+    //};
+    
 
     function toggleNavbar(tipo) {
 
         switch(tipo){
             case 1: 
                 navbarOptionsFisico.classList.add("active-navbar-estoque");
-                navbarOptionsDebito.classList.remove("active-navbar-estoque");
+                //navbarOptionsDebito.classList.remove("active-navbar-estoque");
                 break;
             case 2:
                 navbarOptionsDebito.classList.add("active-navbar-estoque");
-                navbarOptionsFisico.classList.remove("active-navbar-estoque");
+                //navbarOptionsFisico.classList.remove("active-navbar-estoque");
                 break;
         }
         
     }
-
-
 
 </script>

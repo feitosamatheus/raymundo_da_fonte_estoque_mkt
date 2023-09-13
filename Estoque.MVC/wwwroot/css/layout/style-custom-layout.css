@@ -285,7 +285,7 @@
 }
 
 .tipo-fisico {
-    cursor: pointer;
+    /*cursor: pointer;*/
     color: #3d4b52a1;
     font-weight: 600;
 }
@@ -294,8 +294,17 @@
     color: #3d4b52a1;
     font-weight: 600;
 }
+.tipo-toggle {
+    cursor: pointer;
+    color: #3d4b52;
+    font-weight: 600;
+}
 
 .active-navbar-estoque {
     border-bottom: 2px solid #96a1a7 !important;
+    color: #3d4b52;
+}
+
+.active-toggle-estoque {
     color: #3d4b52;
 }

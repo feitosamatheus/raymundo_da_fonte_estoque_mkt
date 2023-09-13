@@ -11,6 +11,6 @@ namespace Estoque.Domain.Interfaces
     {
         Task<IEnumerable<Item>> GetItems();
         Task<Item> GetItemPorId(int id);
-        IQueryable<Item> GetItensFiltro(string filter);
+        IQueryable<Item> GetItensFiltro(string filter, int filial);
     }
 }

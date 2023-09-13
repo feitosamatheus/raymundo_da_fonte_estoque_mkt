@@ -10,7 +10,7 @@ namespace Estoque.Application.Interfaces
     public interface IEstoqueService
     {
         Task<EstoqueViewModel> GetItemPorId(int id);
-        IQueryable<EstoqueViewModel> GetItensFiltro(string filter);
-        IEnumerable<FilialViewModel> GetFiliais();
+        IQueryable<EstoqueViewModel> GetItensFiltro(string filter, int filial);
+        Task<IEnumerable<FilialViewModel>> GetFiliais();
     }
 }

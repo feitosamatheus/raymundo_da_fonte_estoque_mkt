@@ -34,16 +34,16 @@ namespace Estoque.Application.Services
             return _maper.Map<EstoqueViewModel>(resultado);
         }
 
-        public IQueryable<EstoqueViewModel> GetItensFiltro(string filter)
+        public IQueryable<EstoqueViewModel> GetItensFiltro(string filter, int filial)
         {
-            var resultado = _estoqueRepository.GetItensFiltro(filter);
+            var resultado = _estoqueRepository.GetItensFiltro(filter, filial);
 
             return resultado.ProjectTo<EstoqueViewModel>(_maper.ConfigurationProvider).AsQueryable();
         }
 
-        public IEnumerable<FilialViewModel> GetFiliais()
+        public async Task<IEnumerable<FilialViewModel>> GetFiliais()
         {
-            var resultado = _infraRepository.GetFiliais();
+            var resultado = await _infraRepository.GetFiliais();
             return _maper.Map<IEnumerable<FilialViewModel>>(resultado);
 
         }

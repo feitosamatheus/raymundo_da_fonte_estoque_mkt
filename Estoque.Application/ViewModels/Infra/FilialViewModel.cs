@@ -9,7 +9,7 @@ namespace Estoque.Application.ViewModels.Infra
     public class FilialViewModel
     {
         public int CodFilial { get; set; }
-        public int DescFilial { get; set; }
+        public string DescFilial { get; set; }
         public bool IsMatriz { get; set; }
     }
 }
