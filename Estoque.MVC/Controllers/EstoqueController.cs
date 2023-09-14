@@ -23,14 +23,17 @@ namespace Estoque.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string filter, int filial, int pageindex = 1, string sortExpression = "CodItem")
+        public async Task<IActionResult> Index(string filter, int filial,int tipo, int pageindex = 1, string sortExpression = "CodItem")
         {
             var filiais = await _estoqueService.GetFiliais();
             ViewBag.Filiais = filiais;
 
+            var tipos = await _estoqueService.GetTipos();
+            ViewBag.Tipos = tipos;
+
             var itens = _estoqueService.GetItensFiltro(filter, filial);
 
-            var model = await PagingList.CreateAsync(itens, 2, pageindex, sortExpression, "CodItem");
+            var model = await PagingList.CreateAsync(itens, 3, pageindex, sortExpression, "CodItem");
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
 
             return View(model);

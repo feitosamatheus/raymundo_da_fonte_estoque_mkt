@@ -12,5 +12,6 @@ namespace Estoque.Application.Interfaces
         Task<EstoqueViewModel> GetItemPorId(int id);
         IQueryable<EstoqueViewModel> GetItensFiltro(string filter, int filial);
         Task<IEnumerable<FilialViewModel>> GetFiliais();
+        Task<IEnumerable<TipoViewModel>> GetTipos();
     }
 }

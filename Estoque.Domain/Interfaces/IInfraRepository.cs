@@ -10,5 +10,7 @@ namespace Estoque.Domain.Interfaces
     public interface IInfraRepository
     {
         Task<IEnumerable<Filial>> GetFiliais();
+
+        Task<IEnumerable<Tipo>> GetTipos();
     }
 }

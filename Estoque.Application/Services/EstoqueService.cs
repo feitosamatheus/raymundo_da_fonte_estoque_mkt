@@ -45,7 +45,12 @@ namespace Estoque.Application.Services
         {
             var resultado = await _infraRepository.GetFiliais();
             return _maper.Map<IEnumerable<FilialViewModel>>(resultado);
+        }
 
+        public async Task<IEnumerable<TipoViewModel>> GetTipos()
+        {
+            var resultado = await _infraRepository.GetTipos();
+            return _maper.Map<IEnumerable<TipoViewModel>>(resultado);
         }
     }
 }

@@ -19,10 +19,8 @@ namespace Estoque.Infra.Data.Repository
             _context = applicationDbContext;
         }
 
-        public async Task<IEnumerable<Filial>> GetFiliais()
-        {
-            var resultado = await _context.Filiais.ToListAsync();
-            return resultado;
-        }
+        public async Task<IEnumerable<Filial>> GetFiliais() => await _context.Filiais.ToListAsync();
+
+        public async Task<IEnumerable<Tipo>> GetTipos() => await _context.Tipos.ToListAsync();
     }
 }

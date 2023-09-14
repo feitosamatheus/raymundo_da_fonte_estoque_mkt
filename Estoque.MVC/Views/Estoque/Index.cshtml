@@ -13,16 +13,16 @@
 
 <div class="row mt-3">
     <div class="col-12">
-        <div class="card mb-3 border-0 p-3 pt-1 pb-4" style="border-top: 2px solid #005f9978 !important;border-radius: 0px; box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;">
+        <div class="card mb-3 border-0 p-3 pt-1 pb-4" style="border-top: 2px solid #005f9978 !important;border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;">
             <ul class="list-group list-group-horizontal border-bottom">
                 <li class="list-group-item border-0 rounded-0 bg-transparent tipo-fisico ps-5 pe-5"><a>Filtro</a></li>
                 <li class="list-group-item border-0 rounded-0 bg-transparent tipo-toggle ms-auto p-0 me-2" title="Filtro" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
-                    <h4 class="mt-1">
+                    <h3 class="mt-1">
                         <i class="bi bi-filter"></i>
-                    </h4>
+                    </h3>
                 </li>
             </ul>
-            <div class="border-bottom collapse" id="multiCollapseExample1">
+            <div class="border-bottom collapse show" id="multiCollapseExample1">
                 <form class="row mt-3 pt-2 ps-2 pb-3" method="get">
                     <div class="col-6 col-lg-3">
                         <div class="input-group flex-nowrap">
@@ -38,6 +38,18 @@
                                 @foreach (var item in ViewBag.Filiais)
                                 {
                                     <option value="@item.CodFilial">@item.DescFilial</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                            <select class="form-select" name="tipo">
+                                <option value="">Todas...</option>
+                                @foreach (var item in ViewBag.Tipos)
+                                {
+                                    <option value="@item.IdTipo">@item.DescTipo</option>
                                 }
                             </select>
                         </div>
@@ -114,27 +126,25 @@
         <div class="col-12">
             @foreach(var item in Model)
             {
-                @if(item.IdTipo == 1){
-                    <div class="card mb-2 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
-                        <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
-                            <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
-                                <p>@item.CodItem</p>
-                            </div>
-                            <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
-                                <img src="@item.UrlImagem" width="20">
-                            </div>
-                            <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                                <h6 style="color:#3d4b52;">@item.DescItem</h6>
-                            </div>
-                            <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;">
-                                <h6 style="color:#3d4b52;">@item.Quantidade</h6>
-                            </div>
-                            <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                                <p>@item.Observacao</p>
-                            </div>
+                <div class="card mb-2 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
+                    <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
+                        <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
+                            <p>@item.CodItem</p>
+                        </div>
+                        <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
+                            <img src="@item.UrlImagem" width="20">
+                        </div>
+                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
+                            <h6 style="color:#3d4b52;">@item.DescItem</h6>
+                        </div>
+                        <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;">
+                            <h6 style="color:#3d4b52;">@item.Quantidade</h6>
+                        </div>
+                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
+                            <p>@item.Observacao</p>
                         </div>
                     </div>
-                }
+                </div>
             }
         </div>
     </div>
