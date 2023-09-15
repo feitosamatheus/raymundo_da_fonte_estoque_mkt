@@ -1,6 +1,4 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Estoque.EstoqueViewModel>
-
-@{
+﻿@{
     ViewData["Title"] = "Estoque";
 }
 
@@ -23,11 +21,11 @@
                 </li>
             </ul>
             <div class="border-bottom collapse show" id="multiCollapseExample1">
-                <form class="row mt-3 pt-2 ps-2 pb-3" method="get">
+                <form class="row mt-3 pt-2 ps-2 pb-3">
                     <div class="col-6 col-lg-3">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">Item</span>
-                            <input name="filter" class="form-control" placeholder="filtro" value="@Model.RouteValue["Filter"]" />
+                            <input name="filter" class="form-control" placeholder="filtro"  />
                         </div>
                     </div>
                     <div class="col-6 col-lg-3">
@@ -55,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-3 text-end text-lg-start">
-                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                        <button type="button" class="btn btn-primary" id="btn-buscar-itens">Pesquisar</button>
                     </div>
                 </form>
             </div>
@@ -63,135 +61,35 @@
     </div>
 </div>
 
-@if (Model.TotalRecordCount > 0)
-{
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card mb-2 p-0 ps-4 border-0" style="background: #dddddd;">
-                <div class="card-body row" style="width: 100%;padding: 3px;">
-                    <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @*<span>Código</span>*@
-                        @Html.SortableHeaderFor(model => model.CodItem, "CodItem", new {@style="color: #000;text-decoration: none;"})
-                        @if (Model.SortExpression == "CodItem")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                    <div class="col-md-2 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                       <span>Item</span>
-                    </div>
-                    <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @*<span>Descrição</span>*@
-                        @Html.SortableHeaderFor(model => model.DescItem, "DescItem", new {@style="color: #000;text-decoration: none;"})
-                        @if (Model.SortExpression == "DescItem")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                    <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @*<span>Quantidade</span>*@
-                        @Html.SortableHeaderFor(model => model.Quantidade, "Quantidade", new {@style="color: #000;text-decoration: none;"})
-                        @if (Model.SortExpression == "Quantidade")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                    <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @*<span>Observação</span>*@
-                        @Html.SortableHeaderFor(model => model.Observacao, "Observacao", new {@style="color: #000;text-decoration: none;"})
-                        @if (Model.SortExpression == "Observacao")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            @foreach(var item in Model)
-            {
-                <div class="card mb-2 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
-                    <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
-                        <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
-                            <p>@item.CodItem</p>
-                        </div>
-                        <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
-                            <img src="@item.UrlImagem" width="20">
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <h6 style="color:#3d4b52;">@item.DescItem</h6>
-                        </div>
-                        <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;">
-                            <h6 style="color:#3d4b52;">@item.Quantidade</h6>
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <p>@item.Observacao</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-
-    <div style="display: flex;justify-content:space-between; font-weight: 600;color:#005f99;">
-        <span class="ms-1">Total de Itens : @Model.TotalRecordCount</span>
-        <vc:pager paging-list="@Model"></vc:pager>
-    </div>
-}
-else
-{
-    <div class="card" style="background: #0069a21f;">
-        <div class="card-body">
-            <h5 class="card-title">Ops! Nenhum resultado encontrado.</h5>
-            <p class="card-text">Altere a combinação dos filtros e tente novamente.</p>
-        </div>
-    </div>
-}
+<div id="div-relatorio-estoque"></div>
 
 <script>
     var navbarOptionsFisico = document.querySelector(".tipo-fisico");
-    //var navbarOptionsDebito = document.querySelector(".tipo-debito");
+    var btnBuscarItens = document.querySelector("#btn-buscar-itens");
+    var divRelatorioItens = document.querySelector("#div-relatorio-estoque");
 
     toggleNavbar(1)
 
-    //navbarOptionsFisico.onclick = function () {
-    //    toggleNavbar(1);
-    //};
-    
-    //navbarOptionsDebito.onclick = function () {
-    //    toggleNavbar(2);
-    //};
-    
+    btnBuscarItens.onclick = function () {
+        fetchHtml();
+    };
 
     function toggleNavbar(tipo) {
 
         switch(tipo){
             case 1: 
                 navbarOptionsFisico.classList.add("active-navbar-estoque");
-                //navbarOptionsDebito.classList.remove("active-navbar-estoque");
-                break;
-            case 2:
-                navbarOptionsDebito.classList.add("active-navbar-estoque");
-                //navbarOptionsFisico.classList.remove("active-navbar-estoque");
-                break;
         }
-        
+    }
+
+    function fetchHtml() {
+        fetch('@Url.Action("BuscarItens","Estoque")')
+        .then((response) => {
+            return response.text();
+        })
+        .then((html) => {
+            divRelatorioItens.innerHTML = html     
+        });
     }
 
 </script>

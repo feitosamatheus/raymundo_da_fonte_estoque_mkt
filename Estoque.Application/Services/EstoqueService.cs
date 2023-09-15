@@ -34,9 +34,9 @@ namespace Estoque.Application.Services
             return _maper.Map<EstoqueViewModel>(resultado);
         }
 
-        public IQueryable<EstoqueViewModel> GetItensFiltro(string filter, int filial)
+        public IQueryable<EstoqueViewModel> GetItensFiltro(string filter, int tipo, int filial)
         {
-            var resultado = _estoqueRepository.GetItensFiltro(filter, filial);
+            var resultado = _estoqueRepository.GetItensFiltro(filter, tipo, filial);
 
             return resultado.ProjectTo<EstoqueViewModel>(_maper.ConfigurationProvider).AsQueryable();
         }

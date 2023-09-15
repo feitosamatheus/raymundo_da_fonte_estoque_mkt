@@ -32,7 +32,7 @@ namespace Estoque.Infra.Data.Repository
             return resultado;
         }
 
-        public IQueryable<Item> GetItensFiltro(string filter, int filial)
+        public IQueryable<Item> GetItensFiltro(string filter, int tipo, int filial)
         {
             var resultado = _context.Itens.AsNoTracking().AsQueryable();
 
