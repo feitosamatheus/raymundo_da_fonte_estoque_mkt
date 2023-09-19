@@ -1,23 +1,134 @@
-﻿@*@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>*@
-@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>
+﻿@{
+    ViewData["Title"] = "Estoque";
+}
 
-Total de Pedidos : @Model.TotalRecordCount
-
-<form method="get" class="form-inline">
-
-    <input name="filter" class="form-control" placeholder="filtro"
-           value="@Model.RouteValue["Filter"]" />
-
-    <button type="submit" class="btn btn-info">Procurar</button>
-</form>
-
-<div>
-    <vc:pager paging-list="@Model"></vc:pager>
+<div class=" border-bottom d-flex align-items-start">
+    <i class="bi bi-box2 me-2 fs-5"></i>
+    <h4 style="font-weight: 400;">
+        Estoque Geral
+    </h4>
 </div>
 
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card mb-3 border-0 p-3 pt-1 pb-4" style="border-top: 2px solid #005f9978 !important;border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;">
+            <ul class="list-group list-group-horizontal border-bottom">
+                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-fisico ps-5 pe-5"><a>Filtro</a></li>
+                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-toggle ms-auto p-0 me-2" title="Filtro" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <h3 class="mt-1">
+                        <i class="bi bi-filter"></i>
+                    </h3>
+                </li>
+            </ul>
+            <div class="border-bottom collapse show" id="multiCollapseExample1">
+                <form class="row mt-3 pt-2 ps-2 pb-3">
+                    <div class="col-6 col-lg-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">Item</span>
+                            <input name="filter" id="nome" class="form-control" placeholder="filtro" />
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Filial</label>
+                            <select class="form-select" name="filial" id="filial">
+                                <option value="">Todas...</option>
+                                @foreach (var item in ViewBag.Filiais)
+                                {
+                                    <option value="@item.CodFilial">@item.DescFilial</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                            <select class="form-select" name="tipo" id="tipo">
+                                <option value="">Todas...</option>
+                                @foreach (var item in ViewBag.Tipos)
+                                {
+                                    <option value="@item.IdTipo">@item.DescTipo</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 text-end text-lg-start">
+                        <button type="button" class="btn btn-primary" id="btn-buscar-itens">Pesquisar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-@foreach (var item in Model)
-{
+<div id="div-relatorio-estoque"></div>
 
-    <h1>@item.CodPedido</h1>
-}
+<script>
+    var navbarOptionsFisico = document.querySelector(".tipo-fisico");
+    var btnBuscarItens = document.querySelector("#btn-buscar-itens");
+    var divRelatorioItens = document.querySelector("#div-relatorio-estoque");
+
+    toggleNavbar(1)
+
+    btnBuscarItens.onclick = function () {
+        buscarItens();
+    };
+
+    function toggleNavbar(tipo) {
+
+        switch (tipo) {
+            case 1:
+                navbarOptionsFisico.classList.add("active-navbar-estoque");
+        }
+    }
+
+    function buscarItens() {
+        debugger;
+        btnBuscarItens.innerHTML = 'loading...';
+        var filter = document.querySelector("#nome");
+        var filial = document.querySelector("#filial");
+        var tipo = document.querySelector("#tipo");
+        var form = document.querySelector("#form-relatorio-estoque");
+
+        var url = "/estoque/BuscarItens?filial=" + filial.value + "&filter=" + filter.value + "&tipo=" + tipo.value + "";
+
+        fetch(url, {
+            method: 'POST'
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                btnBuscarItens.innerHTML = "Pesquisar";
+                divRelatorioItens.innerHTML = html
+            });
+    }
+
+    function pagination(url) {
+        debugger;
+        fetch(url, {
+            method: 'POST'
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                divRelatorioItens.innerHTML = html
+            });
+    }
+
+    function ordenation(element) {
+        debugger;
+        var url = element.getAttribute('href');
+        element.removeAttribute('href');
+        fetch(url, {
+            method: 'POST'
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                divRelatorioItens.innerHTML = html
+            });
+    }
+</script>

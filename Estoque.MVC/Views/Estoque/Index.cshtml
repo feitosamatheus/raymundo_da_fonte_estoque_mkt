@@ -84,7 +84,7 @@
 
     function buscarItens() {
         debugger;
-
+        btnBuscarItens.innerHTML = 'loading...';
         var filter = document.querySelector("#nome");
         var filial = document.querySelector("#filial");
         var tipo = document.querySelector("#tipo");
@@ -99,6 +99,7 @@
             return response.text();
         })
         .then((html) => {
+                btnBuscarItens.innerHTML = "Pesquisar";
             divRelatorioItens.innerHTML = html     
         });
     }
@@ -130,5 +131,4 @@
                 divRelatorioItens.innerHTML = html
             });
     }
-
 </script>

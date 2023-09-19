@@ -40,7 +40,7 @@ namespace Estoque.MVC.Controllers
 
             var itens = _estoqueService.GetItensFiltro(filter, tipo, filial);
 
-            var model = await PagingList.CreateAsync(itens, 3, pageindex, sortExpression, "CodItem");
+            var model = await PagingList.CreateAsync(itens, 4, pageindex, sortExpression, "CodItem");
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
             model.Action = "BuscarItens";
 
