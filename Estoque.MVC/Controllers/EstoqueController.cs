@@ -34,14 +34,9 @@ namespace Estoque.MVC.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> BuscarItens(string filter, int filial, int tipo, int pageindex = 1, string sortExpression = "CodItem")
         {
-            var filiais = await _estoqueService.GetFiliais();
-            ViewBag.Filiais = filiais;
-
-            var tipos = await _estoqueService.GetTipos();
-            ViewBag.Tipos = tipos;
 
             var itens = _estoqueService.GetItensFiltro(filter, tipo, filial);
 

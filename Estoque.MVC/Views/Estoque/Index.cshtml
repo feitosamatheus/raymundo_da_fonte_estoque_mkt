@@ -25,13 +25,13 @@
                     <div class="col-6 col-lg-3">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">Item</span>
-                            <input name="filter" class="form-control" placeholder="filtro"  />
+                            <input name="filter" id="nome" class="form-control" placeholder="filtro"  />
                         </div>
                     </div>
                     <div class="col-6 col-lg-3">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Filial</label>
-                            <select class="form-select" name="filial">
+                            <select class="form-select" name="filial" id="filial">
                                 <option value="">Todas...</option>
                                 @foreach (var item in ViewBag.Filiais)
                                 {
@@ -43,7 +43,7 @@
                     <div class="col-6 col-lg-3">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
-                            <select class="form-select" name="tipo">
+                            <select class="form-select" name="tipo" id="tipo">
                                 <option value="">Todas...</option>
                                 @foreach (var item in ViewBag.Tipos)
                                 {
@@ -71,7 +71,7 @@
     toggleNavbar(1)
 
     btnBuscarItens.onclick = function () {
-        fetchHtml();
+        buscarItens();
     };
 
     function toggleNavbar(tipo) {
@@ -82,14 +82,53 @@
         }
     }
 
-    function fetchHtml() {
-        fetch('@Url.Action("BuscarItens","Estoque")')
+    function buscarItens() {
+        debugger;
+
+        var filter = document.querySelector("#nome");
+        var filial = document.querySelector("#filial");
+        var tipo = document.querySelector("#tipo");
+        var form = document.querySelector("#form-relatorio-estoque");
+
+        var url = "/estoque/BuscarItens?filial=" + filial.value + "&filter=" + filter.value + "&tipo=" + tipo.value + "";
+
+        fetch(url, {
+            method: 'POST'
+        })
         .then((response) => {
             return response.text();
         })
         .then((html) => {
             divRelatorioItens.innerHTML = html     
         });
+    }
+
+    function pagination(url) {
+        debugger;
+        fetch(url, {
+            method: 'POST'
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                divRelatorioItens.innerHTML = html
+            });
+    }
+
+    function ordenation(element) {
+        debugger;
+        var url = element.getAttribute('href');
+        element.removeAttribute('href');
+        fetch(url, {
+            method: 'POST'
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                divRelatorioItens.innerHTML = html
+            });
     }
 
 </script>

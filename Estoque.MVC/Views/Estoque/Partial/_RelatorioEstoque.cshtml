@@ -8,7 +8,7 @@
                 <div class="card-body row" style="width: 100%;padding: 3px;">
                     <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
                         @*<span>Código</span>*@
-                        @Html.SortableHeaderFor(model => model.CodItem, "CodItem", new {@style="color: #000;text-decoration: none;"})
+                        @Html.SortableHeaderFor(model => model.CodItem, "CodItem", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
                         @if (Model.SortExpression == "CodItem")
                         {
                             <i class="bi bi-caret-down-fill mt-1"></i>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
                         @*<span>Descrição</span>*@
-                        @Html.SortableHeaderFor(model => model.DescItem, "DescItem", new {@style="color: #000;text-decoration: none;"})
+                        @Html.SortableHeaderFor(model => model.DescItem, "DescItem", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
                         @if (Model.SortExpression == "DescItem")
                         {
                             <i class="bi bi-caret-down-fill mt-1"></i>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-3 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
                         @*<span>Quantidade</span>*@
-                        @Html.SortableHeaderFor(model => model.Quantidade, "Quantidade", new {@style="color: #000;text-decoration: none;"})
+                        @Html.SortableHeaderFor(model => model.Quantidade, "Quantidade", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
                         @if (Model.SortExpression == "Quantidade")
                         {
                             <i class="bi bi-caret-down-fill mt-1"></i>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
                         @*<span>Observação</span>*@
-                        @Html.SortableHeaderFor(model => model.Observacao, "Observacao", new {@style="color: #000;text-decoration: none;"})
+                        @Html.SortableHeaderFor(model => model.Observacao, "Observacao", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
                         @if (Model.SortExpression == "Observacao")
                         {
                             <i class="bi bi-caret-down-fill mt-1"></i>
@@ -90,20 +90,6 @@
         <span class="ms-1">Total de Itens : @Model.TotalRecordCount</span>
         <vc:pager paging-list="@Model"></vc:pager>
     </div>
-    <script>
-        var btnBuscarItens = document.querySelector("#btn-buscar-itens");
-        page - link
-
-        function fetchHtml() {
-            fetch('@Url.Action("BuscarItens","Estoque")')
-            .then((response) => {
-                return response.text();
-            })
-            .then((html) => {
-                divRelatorioItens.innerHTML = html
-            });
-        }
-    </script>
 }
 else
 {
