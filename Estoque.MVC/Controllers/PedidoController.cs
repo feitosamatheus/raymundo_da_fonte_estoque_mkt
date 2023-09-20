@@ -13,15 +13,24 @@ namespace Estoque.MVC.Controllers
             _pedidoService = pedidoService;
         }
 
-        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "CodPedido")
+        public IActionResult Index()
         {
-            var resultado = _pedidoService.GetPedidos(filter);
-
-            var model = await PagingList.CreateAsync(resultado, 2, pageindex, sort, "CodPedido");
-            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
-
-            return View(model);
+            return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> BuscarPedidos(string filter, int pageindex = 1, string sortExpression = "CodPedido")
+        {
+            const int quantidadePorPagina = 4;
+            var resultado = _pedidoService.GetPedidos(filter);
+
+            var model = await PagingList.CreateAsync(resultado, quantidadePorPagina, pageindex, sortExpression, "CodPedido");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+            model.Action = "BuscarPedidos";
+
+
+
+            return PartialView("Partial/_RelatorioPedido", model);
+        }
     }
 }

@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Estoque";
+    ViewData["Title"] = "Pedidos";
 }
 
 <div class=" border-bottom d-flex align-items-start">
-    <i class="bi bi-box2 me-2 fs-5"></i>
+    <i class="bi bi-card-checklist me-2 fs-5"></i>
     <h4 style="font-weight: 400;">
-        Estoque Geral
+        Pedidos
     </h4>
 </div>
 
@@ -33,10 +33,10 @@
                             <label class="input-group-text" for="inputGroupSelect01">Filial</label>
                             <select class="form-select" name="filial" id="filial">
                                 <option value="">Todas...</option>
-                                @foreach (var item in ViewBag.Filiais)
+@*                                @foreach (var item in ViewBag.Filiais)
                                 {
                                     <option value="@item.CodFilial">@item.DescFilial</option>
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
@@ -45,15 +45,15 @@
                             <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
                             <select class="form-select" name="tipo" id="tipo">
                                 <option value="">Todas...</option>
-                                @foreach (var item in ViewBag.Tipos)
+                                @*@foreach (var item in ViewBag.Tipos)
                                 {
                                     <option value="@item.IdTipo">@item.DescTipo</option>
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
                     <div class="col-12 col-lg-3 text-end text-lg-start">
-                        <button type="button" class="btn btn-primary" id="btn-buscar-itens">Pesquisar</button>
+                        <button type="button" class="btn btn-primary" id="btn-buscar-pedidos">Pesquisar</button>
                     </div>
                 </form>
             </div>
@@ -61,17 +61,17 @@
     </div>
 </div>
 
-<div id="div-relatorio-estoque"></div>
+<div id="div-relatorio-pedidos"></div>
 
 <script>
     var navbarOptionsFisico = document.querySelector(".tipo-fisico");
-    var btnBuscarItens = document.querySelector("#btn-buscar-itens");
-    var divRelatorioItens = document.querySelector("#div-relatorio-estoque");
+    var btnBuscarPedidos = document.querySelector("#btn-buscar-pedidos");
+    var divRelatorioPedidos = document.querySelector("#div-relatorio-pedidos");
 
     toggleNavbar(1)
 
-    btnBuscarItens.onclick = function () {
-        buscarItens();
+    btnBuscarPedidos.onclick = function () {
+        buscarPedidos();
     };
 
     function toggleNavbar(tipo) {
@@ -82,15 +82,14 @@
         }
     }
 
-    function buscarItens() {
+    function buscarPedidos() {
         debugger;
-        btnBuscarItens.innerHTML = 'loading...';
+        btnBuscarPedidos.innerHTML = 'Carregando...';
         var filter = document.querySelector("#nome");
         var filial = document.querySelector("#filial");
         var tipo = document.querySelector("#tipo");
-        var form = document.querySelector("#form-relatorio-estoque");
 
-        var url = "/estoque/BuscarItens?filial=" + filial.value + "&filter=" + filter.value + "&tipo=" + tipo.value + "";
+        var url = "/pedido/BuscarPedidos?filter=" + filter.value + "";
 
         fetch(url, {
             method: 'POST'
@@ -99,8 +98,8 @@
                 return response.text();
             })
             .then((html) => {
-                btnBuscarItens.innerHTML = "Pesquisar";
-                divRelatorioItens.innerHTML = html
+                btnBuscarPedidos.innerHTML = "Pesquisar";
+                divRelatorioPedidos.innerHTML = html
             });
     }
 
@@ -109,26 +108,27 @@
         fetch(url, {
             method: 'POST'
         })
-            .then((response) => {
-                return response.text();
-            })
-            .then((html) => {
-                divRelatorioItens.innerHTML = html
-            });
+        .then((response) => {
+            return response.text();
+        })
+        .then((html) => {
+            divRelatorioPedidos.innerHTML = html
+        });
     }
 
     function ordenation(element) {
         debugger;
         var url = element.getAttribute('href');
         element.removeAttribute('href');
+        
         fetch(url, {
             method: 'POST'
         })
-            .then((response) => {
-                return response.text();
-            })
-            .then((html) => {
-                divRelatorioItens.innerHTML = html
-            });
+        .then((response) => {
+            return response.text();
+        })
+        .then((html) => {
+            divRelatorioPedidos.innerHTML = html
+        });
     }
 </script>

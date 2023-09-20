@@ -229,7 +229,7 @@
 } */
 
 .main {
-    margin-left: 72px;
+    margin-left: 65px;
     margin-right: 4px;
     overflow: hidden;
     transition: margin 0.4s;
@@ -250,8 +250,8 @@
     width: 180px !important;
 }
 .open-main {
-    margin-left: 200px;
-    margin-right: 15px;
+    margin-left: 190px;
+    margin-right: 6px;
     margin-top: 0;
 }
 .open-desc-item {
@@ -307,4 +307,15 @@
 
 .active-toggle-estoque {
     color: #3d4b52;
+}
+
+@media (width < 680px) {
+    .sb-container {
+        display:none;
+    }
+    .main {
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 0;
+    }
 }

@@ -37,10 +37,10 @@ namespace Estoque.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> BuscarItens(string filter, int filial, int tipo, int pageindex = 1, string sortExpression = "CodItem")
         {
-
+            const int quantidadePorPagina = 4;
             var itens = _estoqueService.GetItensFiltro(filter, tipo, filial);
 
-            var model = await PagingList.CreateAsync(itens, 4, pageindex, sortExpression, "CodItem");
+            var model = await PagingList.CreateAsync(itens, quantidadePorPagina, pageindex, sortExpression, "CodItem");
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
             model.Action = "BuscarItens";
 
