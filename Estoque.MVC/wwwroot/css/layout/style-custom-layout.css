@@ -284,31 +284,6 @@
     background-image: url("/img/background/bg-header-gradient.jpg") !important;
 }
 
-.tipo-fisico {
-    /*cursor: pointer;*/
-    color: #3d4b52a1;
-    font-weight: 600;
-}
-.tipo-debito {
-    cursor: pointer;
-    color: #3d4b52a1;
-    font-weight: 600;
-}
-.tipo-toggle {
-    cursor: pointer;
-    color: #3d4b52;
-    font-weight: 600;
-}
-
-.active-navbar-estoque {
-    border-bottom: 2px solid #96a1a7 !important;
-    color: #3d4b52;
-}
-
-.active-toggle-estoque {
-    color: #3d4b52;
-}
-
 @media (width < 680px) {
     .sb-container {
         display:none;
@@ -317,5 +292,10 @@
         margin-left: 6px;
         margin-right: 6px;
         margin-top: 0;
+    }
+
+    .sb-container-mobile {
+        opacity: 1;
+        visibility: visible;
     }
 }

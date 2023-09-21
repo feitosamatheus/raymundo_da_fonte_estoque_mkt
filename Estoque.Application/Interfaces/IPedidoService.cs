@@ -1,4 +1,5 @@
-﻿using Estoque.Application.ViewModels.Pedido;
+﻿using Estoque.Application.ViewModels.Infra;
+using Estoque.Application.ViewModels.Pedido;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Estoque.Application.Interfaces
     {
         Task<PedidoViewModel> GetPedido(int id);
 
-        PedidoViewModel GetPedidoMock();
-
         IQueryable<PedidoViewModel> GetPedidos(string filter);
+
+        IEnumerable<SituacaoPedidoViewModel> GetSituacaoPedido();
     }
 }

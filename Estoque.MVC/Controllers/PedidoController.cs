@@ -1,5 +1,8 @@
 ﻿using Estoque.Application.Interfaces;
+using Estoque.Application.ViewModels.Pedido;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 
 namespace Estoque.MVC.Controllers
@@ -15,20 +18,24 @@ namespace Estoque.MVC.Controllers
 
         public IActionResult Index()
         {
+            var listaSituacaoPedido = _pedidoService.GetSituacaoPedido();
+            ViewBag.ListaSituacaoPedido = new SelectList(listaSituacaoPedido, "IdSituacao", "DescSituacao");
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> BuscarPedidos(string filter, int pageindex = 1, string sortExpression = "CodPedido")
+        public async Task<IActionResult> BuscarPedidos(FiltroPedidoViewModel filtro)
         {
-            const int quantidadePorPagina = 4;
-            var resultado = _pedidoService.GetPedidos(filter);
+            var quantidadePorPagina = 2;
+            var paginaIndex = filtro.Pageindex == 0 ? 1 : filtro.Pageindex;
+            var ordernacao = string.IsNullOrEmpty(filtro.SortExpression) ? "CodPedido" : filtro.SortExpression; 
 
-            var model = await PagingList.CreateAsync(resultado, quantidadePorPagina, pageindex, sortExpression, "CodPedido");
-            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+            var relatorioPedido = _pedidoService.GetPedidos(filtro.CodPedido);
+
+            var model = await PagingList.CreateAsync(relatorioPedido, quantidadePorPagina, paginaIndex, ordernacao, "CodPedido");
+            model.RouteValue = new RouteValueDictionary { { "filter", filtro.CodPedido } };
             model.Action = "BuscarPedidos";
-
-
 
             return PartialView("Partial/_RelatorioPedido", model);
         }

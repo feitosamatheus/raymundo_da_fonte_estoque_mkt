@@ -9,14 +9,54 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/layout/style-custom-layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Estoque.MVC.styles.css" asp-append-version="true" />
-</head>
+    <style>
+        .sb-container-mobile{
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 270px;
+            left: 0;
+            top: 52px;
+            height: 100%;
+            transition: all 0.35s;
+            z-index: 1045;
+            color: #3d4b52;
+            background: white;
+            visibility: hidden;
+        }
 
+        .icon-sb-coluna-mobile{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 42px;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.04s;
+        }
+
+            .icon-sb-coluna-mobile:hover {
+                background: rgba(0, 0, 0, 0.075);
+            }
+
+        .sb-item-coluna-mobile{
+            opacity: 1;
+            visibility: visible;
+            font-size: 15px;
+            color: #000;
+            transition: all 0.04s;
+        }
+
+
+    </style>
+</head>
 <body style="background: #e9ebf2 !important;">
     @*style="background: #F7F9FC !important;"*@
     <header class="z-index-3 bg-header header">
         <div class="d-flex align-items-center justify-content-center" >
             <div class=" d-flex justify-content-center" style="width: 60px;">
-                <button class="sb-toggle btn-toggle" data-state="false">
+                <button class="sb-toggle btn-toggle" data-state="false" data-bs-toggle="offcanvas" href="#offcanvasExample">
                     <span class="icon-sb-toggle">
                         <i class="icon-header bi bi-list"></i>
                     </span>
@@ -110,6 +150,43 @@
                 </a>
             </nav>
         </aside>
+        <aside class="sb-container-mobile">
+            <nav class="sb-nav">
+                <a class="sb-coluna" asp-area="" asp-controller="Estoque" asp-action="Index">
+                    <span class="icon-sb-coluna-mobile ">
+                        <i class="bi bi-box-seam-fill sb-icon"></i>
+                        <span class="sb-item-coluna-mobile">Estoque</span>
+                    </span>
+                </a>
+                <a class="sb-coluna" asp-area="" asp-controller="Pedido" asp-action="Index">
+                    <span class="icon-sb-coluna-mobile">
+                        <i class="bi bi-card-checklist sb-icon"></i>
+                        <span class="sb-item-coluna-mobile">Pedidos</span>
+                    </span>
+                </a>
+                <a class="sb-coluna" href="/historico">
+                    <span class="icon-sb-coluna-mobile">
+                        <i class="bi bi-bar-chart-fill sb-icon"></i>
+                        <span class="sb-item-coluna-mobile">Duvidas</span>
+                    </span>
+                </a>
+            </nav>
+            <nav class="sb-nav border border-0">
+                <a class="sb-coluna" href="/">
+                    <span class="icon-sb-coluna-mobile">
+                        <i class="bi bi-shop-window sb-icon"></i>
+                        <span class="sb-item-coluna-mobile">Estoque</span>
+                    </span>
+                </a>
+                <a class="sb-coluna" href="/agendamento">
+                    <span class="icon-sb-coluna-mobile">
+                        <i class="bi bi-question-circle sb-icon"></i>
+                        <span class="sb-item-coluna-mobile">Pedidos</span>
+                    </span>
+                </a>
+            </nav>
+        </aside>
+
         <main class="main" role="main">
             <div class="before">
 
@@ -136,33 +213,40 @@
         const descItem = document.querySelectorAll('.sb-item-coluna');
         const iconColuna = document.querySelectorAll('.icon-sb-coluna');
 
-        
+        var largura = window.innerWidth;
+
+        alert(largura);
+
         toggle.onclick = function(){
             toggleSidebar();
         };
 
         function toggleSidebar(){
             var classes = toggle.getAttribute("data-state");
-            if(classes === "false"){
-                sideContainer.classList.add("open-sb-container");
-                main.classList.add("open-main");
-                iconColuna.forEach(element => {
-                    element.classList.add("open-icon-sb-coluna");
-                })
-                descItem.forEach(element => {
-                    element.classList.add("open-desc-item");
-                })
-                toggle.setAttribute("data-state", "true");
-            }else{
-                sideContainer.classList.remove("open-sb-container");
-                main.classList.remove("open-main");
-                 iconColuna.forEach(element => {
-                    element.classList.remove("open-icon-sb-coluna");
-                })
-                descItem.forEach(element => {
-                    element.classList.remove("open-desc-item");
-                })
-                toggle.setAttribute("data-state", "false");
+            var largura = window.innerWidth;
+
+            if(largura >= 680){
+                if(classes === "false"){
+                    sideContainer.classList.add("open-sb-container");
+                    main.classList.add("open-main");
+                    iconColuna.forEach(element => {
+                        element.classList.add("open-icon-sb-coluna");
+                    })
+                    descItem.forEach(element => {
+                        element.classList.add("open-desc-item");
+                    })
+                    toggle.setAttribute("data-state", "true");
+                }else{
+                    sideContainer.classList.remove("open-sb-container");
+                    main.classList.remove("open-main");
+                     iconColuna.forEach(element => {
+                        element.classList.remove("open-icon-sb-coluna");
+                    })
+                    descItem.forEach(element => {
+                        element.classList.remove("open-desc-item");
+                    })
+                    toggle.setAttribute("data-state", "false");
+                }
             }
         }
     </script>

@@ -11,8 +11,6 @@ namespace Estoque.Domain.Interfaces
     {
         Task<Pedido> GetPedido(int id);
 
-        Pedido GetPedidoMock();
-
         IQueryable<Pedido> GetPedidos(string filter);
     }
 }

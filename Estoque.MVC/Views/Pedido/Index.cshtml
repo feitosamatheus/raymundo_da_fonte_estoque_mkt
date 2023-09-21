@@ -1,54 +1,67 @@
-﻿@{
+﻿@model Estoque.Application.ViewModels.Pedido.FiltroPedidoViewModel
+
+@{
     ViewData["Title"] = "Pedidos";
 }
 
+<style>
+    .card-custom{
+        border-top: 2px solid #005f9978 !important;
+        box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    }
+
+    .card-item{
+        color: #3d4b52;
+        font-weight: 600;
+        border-radius: 0 !important;
+        border-bottom: 2px solid #96a1a7 !important;
+    }
+
+    .card-item-toggle{
+        cursor: pointer;
+        color: #3d4b52;
+        font-weight: 600;
+    }
+
+</style>
+
 <div class=" border-bottom d-flex align-items-start">
     <i class="bi bi-card-checklist me-2 fs-5"></i>
-    <h4 style="font-weight: 400;">
+    <h4 class="fw-normal">
         Pedidos
     </h4>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-4">
     <div class="col-12">
-        <div class="card mb-3 border-0 p-3 pt-1 pb-4" style="border-top: 2px solid #005f9978 !important;border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;">
+        <div class="card card-custom p-2 pt-1 pb-3">
             <ul class="list-group list-group-horizontal border-bottom">
-                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-fisico ps-5 pe-5"><a>Filtro</a></li>
-                <li class="list-group-item border-0 rounded-0 bg-transparent tipo-toggle ms-auto p-0 me-2" title="Filtro" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                <li class="list-group-item border-0 ps-5 pe-5 card-item">Filtro</li>
+                <li class="list-group-item border-0 ms-auto p-0 me-2 card-item-toggle" title="Filtro" data-bs-toggle="collapse" data-bs-target="#pesquisar-pedido">
                     <h3 class="mt-1">
                         <i class="bi bi-filter"></i>
                     </h3>
                 </li>
             </ul>
-            <div class="border-bottom collapse show" id="multiCollapseExample1">
-                <form class="row mt-3 pt-2 ps-2 pb-3">
-                    <div class="col-6 col-lg-3">
+            <div class="collapse show" id="pesquisar-pedido">
+                <form class="row mt-4" asp-controller="Pedido" asp-action="BuscarPedidos" method="post" id="form-pesquisa-pedido">
+                    <div class="col-6 col-lg-3 mb-3">
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text" id="addon-wrapping">Item</span>
-                            <input name="filter" id="nome" class="form-control" placeholder="filtro" />
+                            <label class="input-group-text" asp-for="CodPedido"></label>
+                            <input asp-for="CodPedido" type="text" class="form-control" placeholder="Número do Pedido" />
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Filial</label>
-                            <select class="form-select" name="filial" id="filial">
-                                <option value="">Todas...</option>
-@*                                @foreach (var item in ViewBag.Filiais)
-                                {
-                                    <option value="@item.CodFilial">@item.DescFilial</option>
-                                }*@
-                            </select>
+                    <div class="col-6 col-lg-3 mb-3">
+                        <div class="input-group flex-nowrap">
+                            <label class="input-group-text" asp-for="NotaFiscal"></label>
+                            <input asp-for="NotaFiscal" type="text" class="form-control" placeholder="Nota Fiscal" />
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
-                            <select class="form-select" name="tipo" id="tipo">
-                                <option value="">Todas...</option>
-                                @*@foreach (var item in ViewBag.Tipos)
-                                {
-                                    <option value="@item.IdTipo">@item.DescTipo</option>
-                                }*@
+                    <div class="col-6 col-lg-3 mb-3">
+                        <div class="input-group">
+                            <label class="input-group-text" asp-for="IdSituacao"></label>
+                            <select asp-for="IdSituacao" class="form-select" asp-items="ViewBag.ListaSituacaoPedido">
+                                <option selected value="">Todas</option>
                             </select>
                         </div>
                     </div>
@@ -64,36 +77,29 @@
 <div id="div-relatorio-pedidos"></div>
 
 <script>
-    var navbarOptionsFisico = document.querySelector(".tipo-fisico");
+    const divRelatorioPedidos = document.querySelector("#div-relatorio-pedidos");
+    const formRelatorioPedido = document.getElementById("form-pesquisa-pedido");
     var btnBuscarPedidos = document.querySelector("#btn-buscar-pedidos");
-    var divRelatorioPedidos = document.querySelector("#div-relatorio-pedidos");
 
-    toggleNavbar(1)
+    btnBuscarPedidos.onclick = () => buscarPedidos();
 
-    btnBuscarPedidos.onclick = function () {
-        buscarPedidos();
-    };
-
-    function toggleNavbar(tipo) {
-
-        switch (tipo) {
-            case 1:
-                navbarOptionsFisico.classList.add("active-navbar-estoque");
-        }
-    }
-
-    function buscarPedidos() {
-        debugger;
+    const buscarPedidos = async () => {
+        const url = formRelatorioPedido.getAttribute("action")
+        const type = formRelatorioPedido.getAttribute("method")
+        const codPedido = document.getElementById("CodPedido");
+        const notaFiscal = document.getElementById("NotaFiscal");
+        const idSituacao = document.getElementById("IdSituacao");
+        const filtros = {CodPedido: codPedido.value, NotaFiscal: notaFiscal.value, IdSituacao: idSituacao.value}
         btnBuscarPedidos.innerHTML = 'Carregando...';
-        var filter = document.querySelector("#nome");
-        var filial = document.querySelector("#filial");
-        var tipo = document.querySelector("#tipo");
-
-        var url = "/pedido/BuscarPedidos?filter=" + filter.value + "";
-
-        fetch(url, {
-            method: 'POST'
-        })
+        
+        try{
+            await fetch(url, {
+                method: type,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(filtros)
+            })
             .then((response) => {
                 return response.text();
             })
@@ -101,34 +107,46 @@
                 btnBuscarPedidos.innerHTML = "Pesquisar";
                 divRelatorioPedidos.innerHTML = html
             });
+
+        }catch(err){
+            btnBuscarPedidos.innerHTML = "Pesquisar";
+            alert("error" + err);
+        }
     }
 
-    function pagination(url) {
-        debugger;
-        fetch(url, {
-            method: 'POST'
-        })
-        .then((response) => {
-            return response.text();
-        })
-        .then((html) => {
-            divRelatorioPedidos.innerHTML = html
-        });
+    const pagination = async (url) => {      
+        try{
+            await fetch(url, {
+                method: 'POST'
+            })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                divRelatorioPedidos.innerHTML = html
+            });
+        }catch(err){
+            alert("error: " + err)
+        }
     }
 
-    function ordenation(element) {
+    const ordenation = async (element) => {
         debugger;
         var url = element.getAttribute('href');
         element.removeAttribute('href');
-        
-        fetch(url, {
-            method: 'POST'
-        })
-        .then((response) => {
-            return response.text();
-        })
-        .then((html) => {
-            divRelatorioPedidos.innerHTML = html
-        });
+
+        try{
+            await fetch(url, {
+                method: 'POST'
+            })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                divRelatorioPedidos.innerHTML = html
+            });
+        }catch(err){
+            alert("erro:" + err)
+        }
     }
 </script>

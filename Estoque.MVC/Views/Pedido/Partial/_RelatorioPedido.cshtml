@@ -1,90 +1,39 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<Estoque.Application.ViewModels.Pedido.PedidoViewModel>
 
+<style>
+    .thead-tr-custom {
+        border-bottom: 6px solid #e9ebf2;
+        /*background: cadetblue;*/
+        background: #00689fc2;
+        color: white;
+    }
+
+    .tbody-tr-custom {
+        background-color: #fff;
+        height: 72px;
+        border-bottom: 7px solid #e9ebf2;
+    }
+
+    .white-space{
+        white-space: nowrap;
+    }
+
+    .color-bold-blue {
+        font-weight: 600;
+        color: #005f99;
+    }
+
+    .bg-resultado-nao-encontrado{
+        background: #0069a21f;
+    }
+</style>
+
 @if (Model.TotalRecordCount > 0)
 {
-    @*<div class="row mt-2">
-        <div class="col-12">
-            <div class="card mb-2 p-0 ps-4 border-0" style="background: #dddddd;">
-                <div class="card-body row" style="width: 100%;padding: 3px;">
-                    <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @Html.SortableHeaderFor(model => model.CodPedido, "CodPedido", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
-                        @if (Model.SortExpression == "CodPedido")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                    <div class="col-md-2 col-2 d-flex flex-nowrap" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @Html.LabelFor(model => model.First().Item.DescItem, new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
-                    </div>
-                    <div class="col-md-2 col-2 d-flex flex-nowrap" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @Html.SortableHeaderFor(model => model.QtdPedida, "QtdPedida", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
-                        @if (Model.SortExpression == "QtdPedida")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                    <div class="col-md-3 col-3  d-flex flex-nowrap" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @Html.SortableHeaderFor(model => model.QtdAtendida, "QtdAtendida", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
-                        @if (Model.SortExpression == "QtdAtendida")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                    <div class="col-md-1 col-1" style="align-items: center; display: flex;justify-content: center;font-weight: 600;color:#000;">
-                        @Html.SortableHeaderFor(model => model.NotaFiscal, "NotaFiscal", new {@style="color: #000;text-decoration: none;", @onclick="ordenation(this)"})
-                        @if (Model.SortExpression == "NotaFiscal")
-                        {
-                            <i class="bi bi-caret-down-fill mt-1"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-caret-down mt-1"></i>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            @foreach (var item in Model)
-            {
-                <div class="card mb-2 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">
-                    <div class="card-body row ps-4" style="width: 100%;padding: 3px;">
-                        <div class="col-md-1 col-2" style="align-items: center; display: flex;justify-content: center; font-weight: 600;color:#005f99;">
-                            <p>@Html.DisplayFor(modelItem => item.CodPedido)</p>
-                        </div>
-                        <div class="col-md-2 col-2 pt-4" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
-                            <p>@Html.DisplayFor(modelItem => item.Item.DescItem)</p>
-                        </div>
-                        <div class="col-md-2 col-2" style="align-items: center; display: flex; height: 81px;justify-content: center;min-width:57px;">
-                            <p>@Html.DisplayFor(modelItem => item.QtdPedida)</p>
-                        </div>
-                        <div class="col-md-3 col-3" style="align-items: center; display: flex;justify-content: center;">
-                            <p>@Html.DisplayFor(modelItem => item.QtdAtendida)</p>
-                        </div>
-                        <div class="col-md-1 col-1" style="align-items: center; display: flex;justify-content: center;">
-                            <p>@Html.DisplayFor(modelItem => item.NotaFiscal)</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>*@
     <table class="table table-borderless" margin="2">
         <thead>
-            <tr style="border-bottom: 11px solid #e9ebf2; background: cadetblue; color: white;">
-                <th scope="col">
+            <tr class="thead-tr-custom">
+                <th scope="col" class="text-center">
                     @Html.SortableHeaderFor(model => model.CodPedido, "CodPedido", new {@style="color: white;text-decoration: none;", @onclick="ordenation(this)"})
                     @if (Model.SortExpression == "CodPedido")
                     {
@@ -95,10 +44,8 @@
                         <i class="bi bi-caret-down mt-1"></i>
                     }
                 </th>
-                <th scope="col" class="text-center">
-                    @Html.LabelFor(model => model.First().Item.DescItem, new {@style="color: white;text-decoration: none;", @onclick="ordenation(this)"})
-                </th>
-                <th scope="col" style="white-space: nowrap;">
+                <th scope="col" class="text-center">Item</th>
+                <th scope="col" class="text-center white-space">
                     @Html.SortableHeaderFor(model => model.QtdPedida, "QtdPedida", new {@style="color: white;text-decoration: none;", @onclick="ordenation(this)"})
                     @if (Model.SortExpression == "QtdPedida")
                     {
@@ -109,7 +56,7 @@
                         <i class="bi bi-caret-down mt-1"></i>
                     }
                 </th>
-                <th scope="col" style="white-space: nowrap;">
+                <th scope="col" class="text-center white-space">
                     @Html.SortableHeaderFor(model => model.QtdAtendida, "QtdAtendida", new {@style="color: white;text-decoration: none;", @onclick="ordenation(this)"})
                     @if (Model.SortExpression == "QtdAtendida")
                     {
@@ -120,7 +67,7 @@
                         <i class="bi bi-caret-down mt-1"></i>
                     }
                 </th>
-                <th scope="col">
+                <th scope="col" class="text-center">
                     @Html.SortableHeaderFor(model => model.NotaFiscal, "NotaFiscal", new {@style="color: white;text-decoration: none;", @onclick="ordenation(this)"})
                     @if (Model.SortExpression == "NotaFiscal")
                     {
@@ -136,29 +83,27 @@
         <tbody>
             @foreach (var item in Model)
             {
-                @*<div class="card mb-2 border-0" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;">*@
-                <tr style="background-color: #fff;height: 84px; border-bottom: 11px solid #e9ebf2;">
-                    <td class="pt-4" style="font-weight: 600; color: #005f99;">
+                <tr class="tbody-tr-custom">
+                    <td class="pt-3 text-center color-bold-blue">
                         @Html.DisplayFor(modelItem => item.CodPedido)
                     </td>
-                    <td class="pt-4">@Html.DisplayFor(modelItem => item.Item.DescItem)</td>
-                    <td class="pt-4 text-center">@Html.DisplayFor(modelItem => item.QtdPedida)</td>
-                    <td class="pt-4 text-center">@Html.DisplayFor(modelItem => item.QtdAtendida)</td>
-                    <td class="pt-4 text-center">@Html.DisplayFor(modelItem => item.NotaFiscal)</td>
+                    <td class="pt-3 text-center">@Html.DisplayFor(modelItem => item.Item.DescItem)</td>
+                    <td class="pt-3 text-center">@Html.DisplayFor(modelItem => item.QtdPedida)</td>
+                    <td class="pt-3 text-center">@Html.DisplayFor(modelItem => item.QtdAtendida)</td>
+                    <td class="pt-3 text-center">@Html.DisplayFor(modelItem => item.NotaFiscal)</td>
                 </tr>
-@*                </div>*@
             }
         </tbody>
     </table>
 
-    <div style="display: flex;justify-content:space-between; font-weight: 600;color:#005f99;">
+    <div class=" color-bold-blue d-flex justify-content-between">
         <span class="ms-1">Total de Pedido : @Model.TotalRecordCount</span>
         <vc:pager paging-list="@Model"></vc:pager>
     </div>
 }
 else
 {
-    <div class="card" style="background: #0069a21f;">
+    <div class="card bg-resultado-nao-encontrado">
         <div class="card-body">
             <h5 class="card-title">Ops! Nenhum resultado encontrado.</h5>
             <p class="card-text">Altere a combinação dos filtros e tente novamente.</p>

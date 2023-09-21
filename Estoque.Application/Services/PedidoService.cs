@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Estoque.Application.Interfaces;
 using Estoque.Application.ViewModels.Estoque;
+using Estoque.Application.ViewModels.Infra;
 using Estoque.Application.ViewModels.Pedido;
 using Estoque.Domain.Entities;
 using Estoque.Domain.Interfaces;
@@ -17,12 +18,13 @@ namespace Estoque.Application.Services
     public class PedidoService : IPedidoService
     {
         private IPedidoRepository _pedidoRepository;
+        private IInfraRepository _infraRepository;
         private readonly IMapper _maper;
 
-
-        public PedidoService(IPedidoRepository pedidoRepository, IMapper mapper)
+        public PedidoService(IPedidoRepository pedidoRepository, IInfraRepository infraRepository, IMapper mapper)
         {
             _pedidoRepository = pedidoRepository;
+            _infraRepository = infraRepository;
             _maper = mapper;
 
         }
@@ -35,21 +37,18 @@ namespace Estoque.Application.Services
 
         }
 
-        public PedidoViewModel GetPedidoMock()
-        {
-            var resultado =  _pedidoRepository.GetPedidoMock();
-
-
-            var conversao = _maper.Map<PedidoViewModel>(resultado);
-
-            return conversao;
-        }
-
         public IQueryable<PedidoViewModel> GetPedidos(string filter)
         {
             var resultado = _pedidoRepository.GetPedidos(filter);
 
             return resultado.ProjectTo<PedidoViewModel>(_maper.ConfigurationProvider).AsQueryable(); ;
         }
-    }
+
+        public  IEnumerable<SituacaoPedidoViewModel> GetSituacaoPedido() {
+
+            var listaSituacaoPedido =  _infraRepository.GetSituacaoPedido();
+            return _maper.Map<IEnumerable<SituacaoPedidoViewModel>>(listaSituacaoPedido);
+        }
+
+     }
 }

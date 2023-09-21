@@ -24,14 +24,6 @@ namespace Estoque.Infra.Data.Repository
             return resultado;
         }
 
-        public Pedido GetPedidoMock()
-        {
-            return new Pedido
-            {
-                CodPedido = "TESTE"
-            };
-        }
-
         public IQueryable<Pedido> GetPedidos(string filter)
         {
             var resultado = _context.Pedidos.AsNoTracking().AsQueryable();

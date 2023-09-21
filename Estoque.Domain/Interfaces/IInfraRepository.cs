@@ -12,5 +12,7 @@ namespace Estoque.Domain.Interfaces
         Task<IEnumerable<Filial>> GetFiliais();
 
         Task<IEnumerable<Tipo>> GetTipos();
+
+        IEnumerable<SituacaoPedido> GetSituacaoPedido();
     }
 }

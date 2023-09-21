@@ -19,6 +19,7 @@ namespace Estoque.Application.Mappings
             CreateMap<Item, EstoqueViewModel>();
             CreateMap<Filial, FilialViewModel>();
             CreateMap<Tipo, TipoViewModel>();
+            CreateMap<SituacaoPedido, SituacaoPedidoViewModel>();
         }
     }
 }

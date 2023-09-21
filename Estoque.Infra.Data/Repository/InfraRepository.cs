@@ -22,5 +22,7 @@ namespace Estoque.Infra.Data.Repository
         public async Task<IEnumerable<Filial>> GetFiliais() => await _context.Filiais.ToListAsync();
 
         public async Task<IEnumerable<Tipo>> GetTipos() => await _context.Tipos.ToListAsync();
+
+        public IEnumerable<SituacaoPedido> GetSituacaoPedido() =>  _context.SituacaoPedido.ToList();
     }
 }
