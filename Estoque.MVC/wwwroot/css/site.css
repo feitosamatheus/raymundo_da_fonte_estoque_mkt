@@ -19,5 +19,7 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    /*background: #F7F9FC !important;*/
+    background: #e9ebf2 !important;
 }
