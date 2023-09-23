@@ -7,155 +7,33 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/icons/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/layout/style-custom-layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom-style.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Estoque.MVC.styles.css" asp-append-version="true" />
-    <style>
-
-        /*Sidebar mobile*/
-        .sb-container-mobile{
-            position: fixed;
-            display: none;
-            width: 270px;
-            height: 100%;
-            top: 52px;
-            left: 0;
-            z-index: 1045;
-            color: #3d4b52;
-            background: white;
-            opacity:0;
-            visibility: hidden;
-            transition: all 0.35s;
-        }
-
-        .icon-sb-coluna-mobile{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            height: 42px;
-            border-radius: 5px;
-            width: 100%;
-            transition: all 0.04s;
-        }
-
-            .icon-sb-coluna-mobile:hover {
-                background: rgba(0, 0, 0, 0.075);
-            }
-
-        .sb-item-coluna-mobile{
-            font-size: 15px;
-            color: #000;
-            transition: all 0.04s;
-        }
-
-        .open-sb-container-mobile {
-            opacity:1 !important;
-            visibility: visible !important;
-        }
-    </style>
 </head>
 <body>
-    @await Html.PartialAsync("_Header");
-
-    <section class="container-conteudo-pri">
-        <aside class="sb-container">
-            <nav class="sb-nav">
-                <a class="sb-coluna" asp-area="" asp-controller="Estoque" asp-action="Index">
-                    <span class="icon-sb-coluna ">
-                        <i class="bi bi-box-seam-fill sb-icon"></i>
-                        <span class="sb-item-coluna" >Estoque</span>
-                    </span>
-                </a>
-                <a class="sb-coluna" asp-area="" asp-controller="Pedido" asp-action="Index">
-                    <span class="icon-sb-coluna ">
-                        <i class="bi bi-card-checklist sb-icon"></i>
-                        <span class="sb-item-coluna ">Pedidos</span>
-                    </span>
-                </a>
-                <a class="sb-coluna" href="/historico">
-                    <span class="icon-sb-coluna ">
-                        <i class="bi bi-bar-chart-fill sb-icon"></i> 
-                        <span class="sb-item-coluna ">Duvidas</span>
-                    </span>
-                </a>
-            </nav>
-            <nav class="sb-nav border border-0">
-                <a class="sb-coluna" href="/">
-                    <span class="icon-sb-coluna ">
-                        <i class="bi bi-shop-window sb-icon"></i>
-                        <span class="sb-item-coluna">Estoque</span>
-                    </span>
-                </a>
-                <a class="sb-coluna" href="/agendamento">
-                    <span class="icon-sb-coluna ">
-                        <i class="bi bi-question-circle sb-icon"></i>
-                        <span class="sb-item-coluna">Pedidos</span>
-                    </span>
-                </a>
-            </nav>
-        </aside>
-        <aside class="sb-container-mobile">
-            <nav class="sb-nav">
-                <a class="sb-coluna" asp-area="" asp-controller="Estoque" asp-action="Index">
-                    <span class="icon-sb-coluna-mobile ">
-                        <i class="bi bi-box-seam-fill sb-icon"></i>
-                        <span class="sb-item-coluna-mobile">Estoque</span>
-                    </span>
-                </a>
-                <a class="sb-coluna" asp-area="" asp-controller="Pedido" asp-action="Index">
-                    <span class="icon-sb-coluna-mobile">
-                        <i class="bi bi-card-checklist sb-icon"></i>
-                        <span class="sb-item-coluna-mobile">Pedidos</span>
-                    </span>
-                </a>
-                <a class="sb-coluna" href="/historico">
-                    <span class="icon-sb-coluna-mobile">
-                        <i class="bi bi-bar-chart-fill sb-icon"></i>
-                        <span class="sb-item-coluna-mobile">Duvidas</span>
-                    </span>
-                </a>
-            </nav>
-            <nav class="sb-nav border border-0">
-                <a class="sb-coluna" href="/">
-                    <span class="icon-sb-coluna-mobile">
-                        <i class="bi bi-shop-window sb-icon"></i>
-                        <span class="sb-item-coluna-mobile">Estoque</span>
-                    </span>
-                </a>
-                <a class="sb-coluna" href="/agendamento">
-                    <span class="icon-sb-coluna-mobile">
-                        <i class="bi bi-question-circle sb-icon"></i>
-                        <span class="sb-item-coluna-mobile">Pedidos</span>
-                    </span>
-                </a>
-            </nav>
-        </aside>
-
+    @await Html.PartialAsync("_Header")
+    <section class="cont-section-principal">
+        @await Html.PartialAsync("_Sidebar")
+        @await Html.PartialAsync("_SidebarMobile")
+        
         <main class="main" role="main">
-            <div class="before">
-
-            </div>
             <section class="pb-3">
                 @RenderBody()
             </section>
             @*<partial name="_LoginPartial" />*@
         </main>
-       @* <footer class="border-top footer text-muted main">
-            <div class="container">
-                &copy; 2023 - Estoque.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
     </section>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        const sideContainer = document.querySelector('.sb-container');
-        const sideContainerMobile = document.querySelector('.sb-container-mobile');
+        const containerSidebar = document.querySelector('.cont-sidebar');
+        const containerSidebarMobile - mobile = document.querySelector('.cont-sidebar-mobile');
         const btnToggle = document.querySelector('#btn-header-toggle');
         const main = document.querySelector('.main');
-        const descItem = document.querySelectorAll('.sb-item-coluna');
-        const iconColuna = document.querySelectorAll('.icon-sb-coluna');
+        const descItem = document.querySelectorAll('.desc-col-sidebar');
+        const iconColuna = document.querySelectorAll('.span-col-sidebar');
 
         btnToggle.onclick = () => toggleSidebar();
 
@@ -165,27 +43,18 @@
             var statusAberto = "true";
             
             if (statusAtual === statusFechado) {
-                sideContainer.classList.add("open-sb-container");
-                sideContainerMobile.classList.add("open-sb-container-mobile");
+                containerSidebar.classList.add("open-cont-sidebar");
+                containerSidebarMobile.classList.add("open-sb-container-mobile");
                 main.classList.add("open-main");
-                iconColuna.forEach(element => {
-                    element.classList.add("open-icon-sb-coluna");
-                })
-                descItem.forEach(element => {
-                    element.classList.add("open-desc-item");
-                })
+                iconColuna.forEach(element => {element.classList.add("open-icon-col-sidebar");})
+                descItem.forEach(element => {element.classList.add("open-desc-col-sidebar");})
                 btnToggle.setAttribute("data-state", statusAberto);
             }else{
-                sideContainer.classList.remove("open-sb-container");
-                sideContainerMobile.classList.remove("open-sb-container-mobile");
-
+                containerSidebar.classList.remove("open-cont-sidebar");
+                containerSidebarMobile.classList.remove("open-sb-container-mobile");
                 main.classList.remove("open-main");
-                    iconColuna.forEach(element => {
-                    element.classList.remove("open-icon-sb-coluna");
-                })
-                descItem.forEach(element => {
-                    element.classList.remove("open-desc-item");
-                })
+                iconColuna.forEach(element => {element.classList.remove("open-icon-col-sidebar");})
+                descItem.forEach(element => {element.classList.remove("open-desc-col-sidebar");})
                 btnToggle.setAttribute("data-state", statusFechado);
             }
         }

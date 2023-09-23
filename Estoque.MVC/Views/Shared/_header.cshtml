@@ -1,152 +1,7 @@
-﻿@*Style header*@
-<style>
-    .bg-header {
-        background-image: url("/img/background/bg-header.jpg") !important;
-    }
-
-    .bg-header-gradient {
-        background-image: url("/img/background/bg-header-gradient.jpg") !important;
-    }
-
-    .container-header {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        position: fixed !important;
-        height: 52px;
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-    }
-
-    .container-header-item {
-        display: flex;
-        align-items: center
-    }
-</style>
-@*Style header item grupo 1*@
-<style>
-    .btn-header-toggle {
-        background: transparent;
-        border: 0;
-        font-family: inherit;
-        text-decoration: none;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.4s;
-    }
-
-    .btn-header-logo {
-        background: transparent;
-        border: 0;
-        font-family: inherit;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.4s;
-        text-decoration: none !important;
-    }
-
-    .icon-header-toggle {
-        border-radius: 24px;
-        line-height: 1;
-        transition: all 0.2s;
-    }
-
-        .icon-header-toggle i {
-            font-size: 28px;
-            transition: 0.2s;
-            border-radius: 50%;
-            padding: 0px 6px 2px 7px;
-            transition: all 0.4s;
-        }
-
-            .icon-header-toggle i:hover {
-                background: rgba(231, 231, 231, 0.151);
-            }
-
-    .icon-header-logo {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        border-radius: 24px;
-        line-height: 1;
-        transition: all 0.2s;
-    }
-</style>
-@*Style header item grupo 2*@
-<style>
-    .dropdown-header-user {
-        display: flex;
-        align-items: center;
-        color:white;
-        border: 0;
-        background: transparent;
-        height: 47px;
-        border-radius: 11px;
-        transition: all 0.2s;
-    }
-
-    .hover-three:hover {
-        color: #a9a1a1;
-    }
-
-    .img-header-user {
-        width: 44px;
-        border-radius: 50%;
-        object-fit: cover;
-        transition: transform 0.2s;
-    }
-
-    .dropdown-header-custom {
-        width: 275px;
-        left: unset !important;
-        border-radius: 12px !important;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        padding-bottom: 0 !important;
-        border: 0;
-    }
-
-    .img-header-user-dropdown {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        transition: transform 0.2s;
-        margin-left: 2px;
-        border: 5px solid rgba(0,0,0,.2);
-    }
-
-    .btn-header-logout{
-        background-color: #0d6efd;
-        border-radius: 0px 0px 7px 7px;
-        overflow:hidden;
-    }
-
-    .btn-header-logout i {
-            font-size: 19px;
-    }
-
-        .btn-header-logout:hover {
-            background-color: #0d6efdab;
-        }
-
-    .dropdown-item-custom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        clear: both;
-        font-weight: 400;
-        text-align: inherit;
-        text-decoration: none;
-        white-space: nowrap;
-        background-color: transparent;
-        border: 0;
-    }
-
-</style>
-
+﻿<link rel="stylesheet" href="~/css/layout/header.css">
 
 <header class="container-header bg-header z-index-3">
-    <div class="container-header-item">
+    <section class="container-header-item">
         <button class="btn-header-toggle" id="btn-header-toggle" data-state="false">
             <span class="icon-header-toggle">
                 <i class="bi bi-list"></i>
@@ -154,22 +9,22 @@
         </button>
         <a class="btn-header-logo" asp-area="" asp-controller="Home" asp-action="Index">
             <span class="icon-header-logo">
-                <img src="https://www.raymundodafonte.com.br/public/site/images/brand/icon-raymundo-da-fonte.png" alt="logomarca" width="32">
-                <span class="ms-3">Raymundo da Fonte</span>
+                <img src="https://www.raymundodafonte.com.br/public/site/images/brand/icon-raymundo-da-fonte.png" alt="logomarca" width="28">
+                <span class="ms-2 desc-header-logo">Raymundo da Fonte</span>
             </span>
         </a>
-    </div>
-    <div class="container-header-item">
+    </section>
+    <section class="container-header-item">
         <nav class="navbar box-shadow d-flex justify-content-end align-items-center me-4">
             <button type="button" class="dropdown-header-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-three-dots hover-three"></i></button>
             <button type="button" class="dropdown-header-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                <span class="p-1" type="button">
-                    <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user"></Image>
+                <span class="p-1 m-0" type="button">
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user">
                 </span>
             </button>
             <ul class="dropdown-menu dropdown-header-custom">
                 <li class="d-flex justify-content-center pt-2">
-                    <Image src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user-dropdown" width=""></Image>
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user-dropdown">
                 </li>
                 <li class="d-flex justify-content-center mt-1 ps-2 pe-2">
                     <div class="d-flex justify-content-center flex-column lh-sm">
@@ -189,5 +44,5 @@
                 </li>
             </ul>
        </nav>
-    </div>
+    </section>
 </header>

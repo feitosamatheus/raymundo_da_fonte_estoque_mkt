@@ -1,0 +1,38 @@
+﻿<link rel="stylesheet" href="~/css/layout/sidebar.css">
+
+<aside class="cont-sidebar">
+    <nav class="nav-sidebar">
+        <a class="col-sidebar" asp-area="" asp-controller="Estoque" asp-action="Index">
+            <span class="span-col-sidebar">
+                <i class="bi bi-box-seam-fill icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Estoque</span>
+            </span>
+        </a>
+        <a class="col-sidebar" asp-area="" asp-controller="Pedido" asp-action="Index">
+            <span class="span-col-sidebar">
+                <i class="bi bi-card-checklist icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Pedidos</span>
+            </span>
+        </a>
+        <a class="col-sidebar" href="/historico">
+            <span class="span-col-sidebar">
+                <i class="bi bi-bar-chart-fill icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Duvidas</span>
+            </span>
+        </a>
+    </nav>
+    <nav class="nav-sidebar border border-0">
+        <a class="col-sidebar" href="/">
+            <span class="span-col-sidebar">
+                <i class="bi bi-shop-window icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Estoque</span>
+            </span>
+        </a>
+        <a class="col-sidebar" href="/agendamento">
+            <span class="span-col-sidebar ">
+                <i class="bi bi-question-circle icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Pedidos</span>
+            </span>
+        </a>
+    </nav>
+</aside>

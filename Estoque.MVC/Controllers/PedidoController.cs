@@ -10,12 +10,10 @@ namespace Estoque.MVC.Controllers
     public class PedidoController : Controller
     {
         private readonly IPedidoService _pedidoService;
-
         public PedidoController(IPedidoService pedidoService)
         {
             _pedidoService = pedidoService;
         }
-
         public IActionResult Index()
         {
             var listaSituacaoPedido = _pedidoService.GetSituacaoPedido();
