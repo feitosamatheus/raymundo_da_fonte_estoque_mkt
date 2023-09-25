@@ -21,7 +21,7 @@
             <section class="pb-3">
                 @RenderBody()
             </section>
-            @*<partial name="_LoginPartial" />*@
+            <partial name="_LoginPartial" />
         </main>
     </section>
 
@@ -29,7 +29,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         const containerSidebar = document.querySelector('.cont-sidebar');
-        const containerSidebarMobile - mobile = document.querySelector('.cont-sidebar-mobile');
+        const containerSidebarMobile = document.querySelector('.cont-sidebar-mobile');
         const btnToggle = document.querySelector('#btn-header-toggle');
         const main = document.querySelector('.main');
         const descItem = document.querySelectorAll('.desc-col-sidebar');
@@ -38,6 +38,7 @@
         btnToggle.onclick = () => toggleSidebar();
 
         const toggleSidebar = () => {
+            debugger;
             var statusAtual = btnToggle.getAttribute("data-state");
             var statusFechado = "false";
             var statusAberto = "true";

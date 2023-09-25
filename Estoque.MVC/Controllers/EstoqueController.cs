@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Estoque.Application.Interfaces;
 using Estoque.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ using ReflectionIT.Mvc.Paging;
 
 namespace Estoque.MVC.Controllers
 {
+    [Authorize]
     public class EstoqueController : Controller
     {
         private readonly IEstoqueService _estoqueService;
