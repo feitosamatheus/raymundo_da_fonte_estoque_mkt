@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Estoque.Application.ViewModels.Estoque;
 using Estoque.Application.ViewModels.Infra;
+using Estoque.Application.ViewModels.Login;
 using Estoque.Application.ViewModels.Pedido;
 using Estoque.Domain.Entities;
 
@@ -20,6 +21,7 @@ namespace Estoque.Application.Mappings
             CreateMap<Filial, FilialViewModel>();
             CreateMap<Tipo, TipoViewModel>();
             CreateMap<SituacaoPedido, SituacaoPedidoViewModel>();
+            CreateMap<Usuario, LoginViewModel>();
         }
     }
 }
