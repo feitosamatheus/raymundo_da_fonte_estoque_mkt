@@ -29,10 +29,13 @@ namespace Estoque.Infra.IoC
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IEstoqueRepository, EstoqueRepository>();
-            services.AddScoped<IEstoqueService, EstoqueService>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
-            services.AddScoped<IPedidoService, PedidoService>();
             services.AddScoped<IInfraRepository, InfraRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+            services.AddScoped<IEstoqueService, EstoqueService>();
+            services.AddScoped<IPedidoService, PedidoService>();
+            services.AddScoped<ILoginService, LoginService>();
         
             return services;
         }

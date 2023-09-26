@@ -12,17 +12,17 @@
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <input type="hidden" asp-for="ReturnUrl" />
                         <div class="form-group">
-                            <label asp-for="User" class="col-md-2 control-label"></label>
+                            <label asp-for="Email" class="col-md-2 control-label"></label>
                             <div class="col-md-6">
-                                <input asp-for="User" class="form-control" />
-                                <span asp-validation-for="User" class="text-danger"></span>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Password" class="col-md-2 control-label"></label>
+                            <label asp-for="PasswordHash" class="col-md-2 control-label"></label>
                             <div class="col-md-6">
-                                <input asp-for="Password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input asp-for="PasswordHash" class="form-control" />
+                                <span asp-validation-for="PasswordHash" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">

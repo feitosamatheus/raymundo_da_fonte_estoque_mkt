@@ -30,23 +30,15 @@ namespace iniciandoProjeto.Controllers
             if(!ModelState.IsValid)
                 return View(model);
 
-            try
-            {
-                var resultadoLogin = await _loginService.EfetivarLogin(model);
+            var resultadoLogin = await _loginService.EfetivarLogin(model);
 
-                if (resultadoLogin)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ModelState.AddModelError("", "Erro ao realizar o login");
-                return View(model);
-            }
-            catch(Exception ex)
+            if (resultadoLogin)
             {
-                ModelState.AddModelError("", "Erro ao realizar o login. Contate o administrador");
-                return View(model);
+                return RedirectToAction("Index", "Home");
             }
+
+            ModelState.AddModelError("", "Erro ao realizar o login");
+            return View(model);
         }   
 
         public IActionResult Register() {
@@ -59,13 +51,11 @@ namespace iniciandoProjeto.Controllers
         {
             if(!ModelState.IsValid)
                 return View(login);
+            
+            var resultadoRegistro = await _loginService.EfetivarRegistro(login);
 
-            var user = new IdentityUser(){ UserName = login.User};
-            var result = await _userManager.CreateAsync(user, login.Password);
-
-            if (result.Succeeded)
+            if (resultadoRegistro)
             {
-                await _userManager.AddToRoleAsync(user, "Member");
                 return RedirectToAction("Login", "account");
             }
 
@@ -78,8 +68,12 @@ namespace iniciandoProjeto.Controllers
         {
             HttpContext.Session.Clear();
             HttpContext.User = null;
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            var resultadoLogout = await _loginService.EfetivarLogout();
+            if (resultadoLogout)
+                return RedirectToAction("Index", "Home");
+
+            ModelState.AddModelError("", "Erro ao realizar o logout. Contate o administrador");
+            return View();
         }
 
         public IActionResult AccessDenied()

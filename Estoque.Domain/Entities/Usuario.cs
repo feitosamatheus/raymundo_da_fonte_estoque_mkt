@@ -8,11 +8,11 @@ namespace Estoque.Domain.Entities
 {
     public class Usuario
     {
-        public string Id { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Email { get; }
-        public string UserName { get; }
-        public string PasswordHash { get; }
+        public string Id { get;}
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
+        public string PasswordHash { get; set; }
     }
 }

@@ -20,21 +20,74 @@ namespace Estoque.Infra.Data.Repository
             _signInManager = signInManager;
         }
 
-        public async Task<bool> EfetivarLogin(Usuario model) {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user != null)
+        public async Task<bool> EfetivarLogin(Usuario login) {
+            try
             {
-                var result = _signInManager.PasswordSignInAsync(user, model.PasswordHash, false, false);
-
-                if (result.Result.Succeeded)
+                var usuario = await _userManager.FindByEmailAsync(login.Email);
+                if (usuario != null)
                 {
-                    return true;
+                    var resultado = _signInManager.PasswordSignInAsync(usuario, login.PasswordHash, false, false);
+                    if (resultado.Result.Succeeded)
+                        return true;
                 }
                 return false;
             }
-            return false;
-        }    
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
 
+        public async Task<bool> EfetivarRegistro(Usuario login)
+        {
+            try
+            {
+                var usuario = new IdentityUser() { UserName = login.UserName, Email = login.Email };
+                var resultado = await _userManager.CreateAsync(usuario, login.PasswordHash);
 
+                if (resultado.Succeeded)
+                    return true;
+            
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+        
+        public async Task<bool> EfetivarRegistroPerfilUsuario(Usuario login, string role)
+        {
+            try
+            {
+                var usuario = new IdentityUser() { UserName = login.UserName, Email = login.Email};
+                var resultado = await _userManager.AddToRoleAsync(usuario, role);
+
+                if (resultado.Succeeded)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+        public async Task<bool> EfetivarLogout()
+        {
+            try
+            {
+                await _signInManager.SignOutAsync();
+                return true;
+            }
+            catch 
+            {
+                return false;            
+            }
+        }
     }
 }
