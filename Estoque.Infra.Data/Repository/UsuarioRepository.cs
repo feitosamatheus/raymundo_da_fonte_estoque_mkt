@@ -20,7 +20,8 @@ namespace Estoque.Infra.Data.Repository
             _signInManager = signInManager;
         }
 
-        public async Task<bool> EfetivarLogin(Usuario login) {
+        public async Task<bool> EfetivarLogin(Usuario login) 
+        {
             try
             {
                 var usuario = await _userManager.FindByEmailAsync(login.Email);
@@ -88,6 +89,13 @@ namespace Estoque.Infra.Data.Repository
             {
                 return false;            
             }
+        }
+
+        public async Task<IList<AuthenticationScheme>> GetAutenticacaoExterna()
+        {
+            var ExternalLogins = ( await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            return (IList<AuthenticationScheme>)ExternalLogins;
         }
     }
 }

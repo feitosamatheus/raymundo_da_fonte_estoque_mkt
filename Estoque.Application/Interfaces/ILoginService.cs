@@ -1,4 +1,5 @@
 ﻿using Estoque.Application.ViewModels.Login;
+using Estoque.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Estoque.Application.Interfaces
         Task<bool> EfetivarLogin(LoginViewModel login);
         Task<bool> EfetivarRegistro(LoginViewModel login);
         Task<bool> EfetivarLogout();
+        AuthenticationScheme GetAutenticacaoExterna();
     }
 }

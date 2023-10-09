@@ -1,4 +1,5 @@
 ﻿using Estoque.Application.Interfaces;
+using Estoque.Application.Services;
 using Estoque.Application.ViewModels.Login;
 
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,7 @@ namespace iniciandoProjeto.Controllers
 
         public IActionResult Login(string returnUrl)
         {
+            var autenticacaoExterna = loginService.GetAutenticacaoExterna();
             return View(new LoginViewModel()
             {
                 ReturnUrl = returnUrl
@@ -29,6 +31,7 @@ namespace iniciandoProjeto.Controllers
         {
             if(!ModelState.IsValid)
                 return View(model);
+
 
             var resultadoLogin = await _loginService.EfetivarLogin(model);
 

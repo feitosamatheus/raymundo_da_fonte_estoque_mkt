@@ -58,5 +58,10 @@ namespace Estoque.Application.Services
             var resultadoLogout = await _userRepository.EfetivarLogout();
             return resultadoLogout; 
         }
+
+        public AuthenticationScheme GetAutenticacaoExterna()
+        {
+
+        }
     }
 }

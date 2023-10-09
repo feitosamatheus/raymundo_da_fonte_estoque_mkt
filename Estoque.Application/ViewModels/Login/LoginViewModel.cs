@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Estoque.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace Estoque.Application.ViewModels.Login
 {
@@ -14,5 +16,8 @@ namespace Estoque.Application.ViewModels.Login
         public string PasswordHash { get; set; }
         
         public string ReturnUrl { get; set; }
+
+        public IList<AuthenticationScheme> ExternalLogin { get; set; }
+
     }
 }
