@@ -13,6 +13,6 @@ namespace Estoque.Application.Interfaces
         Task<bool> EfetivarLogin(LoginViewModel login);
         Task<bool> EfetivarRegistro(LoginViewModel login);
         Task<bool> EfetivarLogout();
-        AuthenticationScheme GetAutenticacaoExterna();
+        Task<IList<AuthenticationScheme>> GetAutenticacaoExterna();
     }
 }

@@ -59,9 +59,11 @@ namespace Estoque.Application.Services
             return resultadoLogout; 
         }
 
-        public AuthenticationScheme GetAutenticacaoExterna()
+        public async Task<IList<AuthenticationScheme>> GetAutenticacaoExterna()
         {
+            var retorno = await _userRepository.GetAutenticacaoExterna();
 
+            return retorno;
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Estoque.Domain.Interfaces
         Task<bool> EfetivarRegistro(Usuario login);
         Task<bool> EfetivarRegistroPerfilUsuario(Usuario login, string role);
         Task<bool> EfetivarLogout();
-
-
+        Task<IList<AuthenticationScheme>> GetAutenticacaoExterna();
     }
 }

@@ -17,12 +17,14 @@ namespace iniciandoProjeto.Controllers
             _loginService = loginService;
         }
 
-        public IActionResult Login(string returnUrl)
+        public async Task<IActionResult> Login(string returnUrl)
         {
-            var autenticacaoExterna = loginService.GetAutenticacaoExterna();
+            
+            var autenticacaoExterna = (await _loginService.GetAutenticacaoExterna()).ToList();
             return View(new LoginViewModel()
             {
-                ReturnUrl = returnUrl
+                ReturnUrl = returnUrl,
+                ExternalLogin = autenticacaoExterna
             });
         }
 

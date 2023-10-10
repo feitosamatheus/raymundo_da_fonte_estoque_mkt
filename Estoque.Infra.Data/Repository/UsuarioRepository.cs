@@ -22,6 +22,8 @@ namespace Estoque.Infra.Data.Repository
 
         public async Task<bool> EfetivarLogin(Usuario login) 
         {
+            var ExternalLogins = ( await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             try
             {
                 var usuario = await _userManager.FindByEmailAsync(login.Email);
@@ -93,9 +95,14 @@ namespace Estoque.Infra.Data.Repository
 
         public async Task<IList<AuthenticationScheme>> GetAutenticacaoExterna()
         {
+            var listaExternalLogin = new List<AuthenticationScheme>();
             var ExternalLogins = ( await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            foreach (var ExternalAuthenticationScheme in ExternalLogins)
+            {
+                listaExternalLogin.Add(new AuthenticationScheme(ExternalAuthenticationScheme.Name, ExternalAuthenticationScheme.DisplayName, ExternalAuthenticationScheme.HandlerType ));
+            }
 
-            return (IList<AuthenticationScheme>)ExternalLogins;
+            return listaExternalLogin;
         }
     }
 }
