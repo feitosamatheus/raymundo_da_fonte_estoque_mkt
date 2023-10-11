@@ -23,8 +23,8 @@ builder.Services.AddAuthentication()
                 });
 builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
+builder.Services.AddRazorPages();
 builder.Services.AddPaging(options =>
 {
     options.ViewName = "Bootstrap4";
