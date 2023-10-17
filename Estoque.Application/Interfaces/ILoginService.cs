@@ -11,7 +11,7 @@ namespace Estoque.Application.Interfaces
     public interface ILoginService
     {
         Task<bool> EfetivarLogin(LoginViewModel login);
-        Task<bool> EfetivarRegistro(LoginViewModel login);
+        Task<bool> EfetivarRegistro(RegistroViewModel login);
         Task<bool> EfetivarLogout();
         Task<IList<AuthenticationScheme>> GetAutenticacaoExterna();
     }

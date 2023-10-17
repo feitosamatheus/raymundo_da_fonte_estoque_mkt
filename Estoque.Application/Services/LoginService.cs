@@ -34,7 +34,7 @@ namespace Estoque.Application.Services
             return resultadoLogin; 
         }
 
-        public async Task<bool> EfetivarRegistro(LoginViewModel login)
+        public async Task<bool> EfetivarRegistro(RegistroViewModel login)
         {
             var convercao = _maper.Map<Usuario>(login);
             var resultadoRegistro = await _userRepository.EfetivarRegistro(convercao);
@@ -45,7 +45,7 @@ namespace Estoque.Application.Services
             return resultadoRegistro;
         }
 
-        public async Task<bool> EfetivarRegistroPerfilUsuario(LoginViewModel login, string role)
+        public async Task<bool> EfetivarRegistroPerfilUsuario(RegistroViewModel login, string role)
         {
             var convercao = _maper.Map<Usuario>(login);
             var resultadoRegistroPerfil = await _userRepository.EfetivarRegistroPerfilUsuario(convercao, role);

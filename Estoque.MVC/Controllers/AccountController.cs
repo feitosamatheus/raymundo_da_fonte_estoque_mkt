@@ -52,7 +52,7 @@ namespace iniciandoProjeto.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginViewModel login)
+        public async Task<IActionResult> Register(RegistroViewModel login)
         {
             if(!ModelState.IsValid)
                 return View(login);
