@@ -1,8 +1,11 @@
 ﻿@model Estoque.Application.ViewModels.Login.LoginViewModel
 
+@{
+    Layout = "_LayoutVazio";
+}
+
 <table class="table">
     <tr>
-        <td><img src="~/images/login_48.png" alt="Fazer o Login" class="center-block" /></td>
         <td>
             <div class="row">
                 <div class="col-10 col-md-10 col-lg-10">
@@ -34,8 +37,9 @@
                 </div>
             </div>
         </td>
-        @*<td>
-        <form id="external-account" asp-page="" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <td>
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register" style="color:white">Registro </a>
+        @*<form id="external-account" asp-page="" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
             <div>
                 <p>
                     @foreach (var provider in Model.ExternalLogin)
@@ -44,7 +48,7 @@
                     }
                 </p>
             </div>
-        </form>
-        </td>*@
+        </form>*@
+        </td>
     </tr>
 </table>

@@ -12,16 +12,14 @@
     <link rel="stylesheet" href="~/Estoque.MVC.styles.css" asp-append-version="true" />
 </head>
 <body>
-    @await Html.PartialAsync("_Header")
+    <partial name="_Header" />
     <section class="cont-section-principal">
-        @await Html.PartialAsync("_Sidebar")
-        @await Html.PartialAsync("_SidebarMobile")
-        
+        <partial name="_Sidebar" />
+        <partial name="_SidebarMobile" />      
         <main class="main" role="main">
             <section class="pb-3">
                 @RenderBody()
             </section>
-            <partial name="_LoginPartial" />
         </main>
     </section>
 

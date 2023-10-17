@@ -13,14 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    IConfigurationSection googleAuthNSection =
-                        builder.Configuration.GetSection("Authentication:Google");
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                });
+//builder.Services.AddAuthentication()
+//                .AddGoogle(options =>
+//                {
+//                    IConfigurationSection googleAuthNSection =
+//                        builder.Configuration.GetSection("Authentication:Google");
+//                    options.ClientId = googleAuthNSection["ClientId"];
+//                    options.ClientSecret = googleAuthNSection["ClientSecret"];
+//                });
 builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc().AddRazorRuntimeCompilation();

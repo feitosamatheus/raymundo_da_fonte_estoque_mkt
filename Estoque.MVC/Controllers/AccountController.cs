@@ -71,8 +71,8 @@ namespace iniciandoProjeto.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear();
-            HttpContext.User = null;
+            //HttpContext.Session.Clear();
+            //HttpContext.User = null;
             var resultadoLogout = await _loginService.EfetivarLogout();
             if (resultadoLogout)
                 return RedirectToAction("Index", "Home");
